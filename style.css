@@ -1,4 +1,3 @@
-/* --- THE "BOOKS" LAYOUT BLUEPRINT --- */
 :root {
     --blood: #8b0000;
     --bg: #0d0d0d;
@@ -11,21 +10,24 @@
 body {
     background-color: var(--bg);
     color: var(--text);
-    font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+    font-family: 'Roboto', sans-serif;
     line-height: 1.8;
-    text-align: center; /* Matching your paranormal site's center-align */
+    text-align: center;
 }
 
 .container {
-    max-width: 900px; /* Narrower container = more professional look */
+    max-width: 900px;
     margin: 0 auto;
     padding: 60px 20px;
 }
 
-/* --- THE NAVIGATION (Clean & Simple) --- */
+/* NAVIGATION */
 nav {
-    padding: 30px;
+    padding: 25px;
     background: #000;
+    position: sticky;
+    top: 0;
+    z-index: 100;
     border-bottom: 1px solid #222;
 }
 
@@ -33,55 +35,61 @@ nav a {
     color: #888;
     text-decoration: none;
     margin: 0 15px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
 
-/* --- THE HERO SECTION (Clean, Not Chaotic) --- */
-header {
-    padding: 100px 20px;
-    background: #000;
-}
+nav a:hover, .buy-link { color: var(--blood); font-weight: bold; }
+
+/* HEADER */
+header { padding: 100px 20px; background: #000; }
 
 .book-cover {
-    width: 240px; /* Fixed professional size */
-    margin: 0 auto 40px auto;
-    display: block;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    width: 240px;
+    margin-bottom: 30px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.8);
     border: 1px solid #333;
 }
 
 h1 {
     font-family: 'Oswald', sans-serif;
-    font-size: 3rem;
-    letter-spacing: 4px;
-    margin-bottom: 10px;
+    font-size: 3.5rem;
+    letter-spacing: 6px;
+    margin-bottom: 5px;
 }
 
 .author-tag {
     font-family: 'Special Elite', serif;
     color: var(--blood);
-    font-size: 1.1rem;
-    margin-bottom: 40px;
+    font-size: 1rem;
 }
 
-/* --- CONTENT BLOCKS --- */
+/* CONTENT BLOCKS */
 .content-section {
     background: var(--card);
     padding: 60px 40px;
     border: 1px solid #222;
-    margin-bottom: 40px;
-    border-radius: 4px;
+    margin-bottom: 50px;
+}
+
+.section-header {
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 30px;
+    letter-spacing: 3px;
 }
 
 .case-quote {
     font-family: 'Special Elite', serif;
-    font-style: italic;
     color: #999;
-    margin-bottom: 20px;
-    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 25px;
+    font-size: 1.2rem;
 }
+
+.exhibit-img { border: 1px solid #333; width: 100%; }
+
+.caption { font-size: 0.8rem; color: #555; margin-top: 15px; }
 
 .btn-buy {
     display: inline-block;
@@ -91,21 +99,38 @@ h1 {
     text-decoration: none;
     font-family: 'Oswald';
     letter-spacing: 2px;
-    margin-top: 30px;
-    border-radius: 2px;
-    transition: 0.3s;
+    margin-top: 20px;
 }
 
-.btn-buy:hover { background: #b00000; }
-
-/* --- THE MAP (Professional Integration) --- */
-.map-frame {
-    width: 100%;
-    max-width: 800px;
-    margin: 40px auto;
-    border: 1px solid #333;
+/* MAP TERMINAL */
+.map-wrapper {
     background: #000;
-    padding: 10px;
+    border: 1px solid #333;
+    margin-top: 20px;
 }
 
-img { max-width: 100%; height: auto; }
+.map-area { position: relative; }
+
+.map-area img { width: 100%; display: block; opacity: 0.7; }
+
+.ping {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: red;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px red;
+}
+
+.intel-box {
+    padding: 30px;
+    background: #0a0a0a;
+    border-top: 1px solid #333;
+    min-height: 150px;
+}
+
+#loc-title { font-family: 'Oswald'; color: var(--blood); font-size: 1.2rem; }
+#loc-desc { font-family: 'Special Elite'; font-size: 0.9rem; margin-top: 10px; color: #888; }
+
+footer { padding: 80px; color: #444; font-size: 0.7rem; background: #000; }
