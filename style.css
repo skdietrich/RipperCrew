@@ -1,135 +1,121 @@
-/* --- THE MASTER REBOOT CSS --- */
+/* --- THE DARK ROOM RESET --- */
 :root {
-    --blood: #7b0000;
-    --glow: #ff4d4d;
+    --blood: #660000;
+    --neon: #ff0000;
+    --paper: #c0c0c0;
     --bg: #050505;
-    --card: #0c0c0c;
-    --text: #c0c0c0;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     background-color: var(--bg);
-    color: var(--text);
+    color: var(--paper);
     font-family: 'Roboto', sans-serif;
-    line-height: 1.8;
     overflow-x: hidden;
 }
 
-/* THE CONTAINER - This stops the "shitty/small" look */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 100px 20px;
-    width: 100%;
-}
-
-/* --- CINEMATIC HEADER --- */
+/* --- THE HERO (DOCUMENTARY STYLE) --- */
 header {
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), 
+    background: radial-gradient(circle, rgba(20,0,0,0.4) 0%, rgba(5,5,5,1) 80%),
                 url('galleries/neon-chicago.jpg') center/cover no-repeat;
     text-align: center;
-    border-bottom: 4px solid var(--blood);
 }
 
 .hero-img {
-    width: 320px !important;
-    filter: drop-shadow(0 0 30px rgba(123, 0, 0, 0.6));
-    margin-bottom: 40px;
-    transition: transform 0.5s ease;
+    width: 250px;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 60px rgba(0,0,0,0.9);
+    border: 1px solid rgba(255,255,255,0.05);
 }
-
-.hero-img:hover { transform: scale(1.05); }
 
 .glitch-title {
     font-family: 'Oswald', sans-serif;
-    font-size: clamp(3rem, 10vw, 6rem);
-    letter-spacing: 5px;
-    color: #fff;
-    text-shadow: 4px 4px var(--blood);
-}
-
-/* --- SECTION STYLING --- */
-.section-label {
-    font-family: 'Special Elite', serif;
-    color: var(--blood);
+    font-size: clamp(3rem, 12vw, 7rem);
+    letter-spacing: 15px; /* Adds the "expensive" feel */
     text-transform: uppercase;
-    letter-spacing: 4px;
-    display: block;
-    margin-bottom: 10px;
-}
-
-.section-title {
-    font-family: 'Oswald', sans-serif;
-    font-size: 3rem;
     color: #fff;
-    margin-bottom: 40px;
+    margin-bottom: 0.5rem;
 }
 
-/* THE GRID - Professional Layout */
+/* --- THE MODULES (Wide Spacing) --- */
+.section {
+    padding: 150px 0; /* Huge vertical spacing for a museum feel */
+    border-bottom: 1px solid #111;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* --- THE GRID (Documentary Balance) --- */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 80px;
-    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: flex-start;
 }
 
-.case-file {
+.case-text {
     font-family: 'Special Elite', serif;
-    background: var(--card);
-    padding: 40px;
-    border-left: 3px solid var(--blood);
     font-size: 1.1rem;
-    color: #aaa;
+    line-height: 2;
+    color: #888;
 }
 
-/* --- IMAGE TAMING --- */
-.img-frame {
-    position: relative;
-    overflow: hidden;
-    border: 1px solid #222;
+.highlight-red {
+    color: var(--neon);
+    font-family: 'Oswald';
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 20px;
 }
 
-.img-frame img {
-    width: 100%;
-    filter: grayscale(100%) contrast(1.2);
-    transition: 0.5s;
-}
-
-.img-frame:hover img {
-    filter: grayscale(0%) contrast(1);
-}
-
-/* --- MAP SYSTEM --- */
-.map-box {
+/* --- THE MAP TERMINAL --- */
+.map-terminal {
     background: #000;
     border: 1px solid #222;
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    display: flex;
+    height: 500px;
 }
 
-@media (max-width: 900px) { .map-box { grid-template-columns: 1fr; } }
+.map-ui {
+    flex: 1.5;
+    background: url('galleries/forensic-map-base.jpg') center/cover;
+    position: relative;
+    filter: brightness(0.4) sepia(0.3);
+}
 
-.map-view { position: relative; }
-
-.intel-view {
-    padding: 40px;
+.intel-panel {
+    flex: 1;
+    padding: 50px;
     background: #080808;
     border-left: 1px solid #222;
 }
 
-.ping {
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    background: var(--glow);
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 0 15px var(--glow);
+/* --- BUTTONS --- */
+.cta-btn {
+    display: inline-block;
+    padding: 20px 45px;
+    background: var(--blood);
+    color: white;
+    text-decoration: none;
+    font-family: 'Oswald';
+    letter-spacing: 4px;
+    margin-top: 40px;
+    transition: 0.4s;
 }
+
+.cta-btn:hover {
+    background: var(--neon);
+    box-shadow: 0 0 30px rgba(255,0,0,0.3);
+}
+
