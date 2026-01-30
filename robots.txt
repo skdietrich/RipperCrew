@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://skdietrich.github.io/RipperCrew/sitemap.xml
