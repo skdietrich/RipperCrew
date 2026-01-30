@@ -1,33 +1,62 @@
-:root {
-    --blood-red: #8b0000;
-    --neon-red: #ff0000;
-    --dark-bg: #0a0a0a;
+.map-interface {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 20px;
+    background: #000;
+    padding: 10px;
+    border: 1px solid #333;
 }
-body { background: var(--dark-bg); color: #dcdcdc; font-family: 'Roboto', sans-serif; margin: 0; scroll-behavior: smooth; }
-.container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
-.case-file-font { font-family: 'Special Elite', serif; line-height: 1.6; }
-.section-title { color: var(--neon-red); font-family: 'Oswald'; border-left: 5px solid var(--blood-red); padding-left: 20px; margin-bottom: 40px; }
-.glitch { font-size: 4rem; color: white; text-shadow: 3px 3px var(--blood-red); text-align: center; }
-header { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(to bottom, transparent, var(--dark-bg)), url('https://images.unsplash.com/photo-1494522358652-f30e61a60313?q=80&w=1200') center/cover; }
-.hero-img { max-width: 300px; box-shadow: 0 0 50px rgba(255,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); }
-nav { position: sticky; top: 0; background: rgba(10,10,10,0.95); padding: 15px; text-align: center; z-index: 1000; border-bottom: 1px solid #222; }
-nav a { color: #888; text-decoration: none; margin: 0 15px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
-nav a:hover { color: var(--neon-red); }
-.content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-.image-frame img { width: 100%; filter: grayscale(1) contrast(1.2); border: 1px solid #333; }
-.caption { font-size: 0.7rem; text-align: center; margin-top: 10px; color: #666; }
-.map-wrapper { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; }
-#crime-map { height: 450px; background: #111; border: 1px solid #333; position: relative; }
-.map-point { position: absolute; width: 12px; height: 12px; background: var(--neon-red); border-radius: 50%; cursor: pointer; box-shadow: 0 0 10px var(--neon-red); transition: 0.3s; }
-.map-point:hover { transform: scale(1.5); background: white; }
-.evidence-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-.card { background: #151515; padding: 25px; border: 1px solid #222; position: relative; }
-.victim-tag { color: var(--blood-red); font-weight: bold; font-size: 0.7rem; display: block; margin-bottom: 10px; }
-.preview-box { background: #111; border: 1px solid #333; padding: 30px; }
-.toggle-container { display: flex; gap: 10px; margin-bottom: 20px; }
-.toggle-btn { background: #222; color: #666; border: 1px solid #333; padding: 10px 20px; cursor: pointer; font-family: 'Oswald'; transition: 0.3s; }
-.toggle-btn.active { background: var(--blood-red); color: white; border-color: var(--neon-red); }
-.cta-section { background: var(--blood-red); padding: 80px 20px; text-align: center; color: white; }
-.btn { background: black; color: white; padding: 15px 30px; text-decoration: none; display: inline-block; margin-top: 20px; font-family: 'Oswald'; transition: 0.3s; }
-.btn:hover { box-shadow: 0 0 20px var(--neon-red); }
-footer { background: #000; padding: 40px 20px; text-align: center; color: #444; font-size: 0.8rem; }
+
+.map-container {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--blood-red);
+}
+
+.base-map-img {
+    width: 100%;
+    display: block;
+    filter: sepia(0.5) contrast(1.2) brightness(0.6);
+}
+
+/* Pulsing Radar Markers */
+.ping {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: var(--neon-red);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.ping-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--neon-red);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+    opacity: 0.8;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(3); opacity: 0; }
+}
+
+#briefing-room {
+    background: #0a0a0a;
+    border-left: 4px solid var(--blood-red);
+    padding: 25px;
+}
+
+.status-light {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #0f0;
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow: 0 0 5px #0f0;
+}

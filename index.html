@@ -1,118 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chicago Ripper Crew: Reboot | Dr. Stephen Dietrich-Kolokouris</title>
-    
-    <meta name="description" content="Official site for Chicago Ripper Crew: Reboot by Dr. Stephen Dietrich-Kolokouris. A clinical true crime excavation of 1981 Chicago.">
-    <meta property="og:title" content="Chicago Ripper Crew: Reboot | Official Digital Companion">
-    <meta property="og:image" content="galleries/Chicago_Ripper_Crew_cover_600dpi.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Oswald:wght@700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <nav>
-        <a href="#about">The Pulse</a>
-        <a href="#map-section">Evidence Map</a>
-        <a href="#victims">The Fallen</a>
-        <a href="#preview">Surgeon's Cut</a>
-        <a href="#buy" style="color:var(--neon-red);">Buy Now</a>
-    </nav>
-
-    <header>
-        <img src="galleries/Chicago_Ripper_Crew_cover_600dpi.jpg" alt="Chicago Ripper Crew Reboot Cover" class="hero-img">
-        <h1 class="glitch">CHICAGO RIPPER CREW</h1>
-        <h2 class="case-file-font">REBOOT</h2>
-    </header>
-
-    <main class="container" id="about">
-        <h2 class="section-title">1981: The City That Bleeds</h2>
-        <div class="content-grid">
-            <div class="text-block">
-                <p class="case-file-font">"Downtown, the Sears Tower gleamed like a middle finger to the heavens."</p>
-                <p>Spring, 1981. Chicago was a paradox of gleaming ambition and industrial decay. While bankers in the Loop ignored the screeching El trains, a red Dodge van haunted the West Side.</p>
-                <p>In this underbelly, 700 murders a year was just a rhythm. This is a clinical excavation of a nightmare—no sugarcoating, just the raw truth of the Ripper Crew's reign.</p>
-                <a href="https://www.amazon.com/dp/B0FDPZ8R9T" target="_blank" class="btn">SECURE THE REBOOT</a>
+<section id="map-section" class="container">
+    <h2 class="section-title">Forensic Map: Path of Terror</h2>
+    <div class="map-interface">
+        <div class="map-container" id="mapFrame">
+            <img src="galleries/forensic-map-base.jpg" alt="1981 Chicago Crime Grid" class="base-map-img">
+            
+            <div class="ping" style="top: 22%; left: 35%;" onclick="updateBrief('natchez')">
+                <span class="ping-pulse"></span>
             </div>
-            <div class="image-frame" style="border: 2px solid #222; padding: 15px; background: #050505;">
-                <img src="https://images.unsplash.com/photo-1496011400194-e356c361955f?auto=format&fit=crop&q=80&w=600" alt="Chicago Elevated Train 1981" style="width: 100%; filter: grayscale(1) contrast(1.2);">
-                <p class="caption" style="font-size: 0.7rem; text-align: center; margin-top: 10px; color: #555;">EXHIBIT 1: The El tracks, Loop district, Spring 1981</p>
+            <div class="ping" style="top: 48%; left: 52%;" onclick="updateBrief('division')">
+                <span class="ping-pulse"></span>
+            </div>
+            <div class="ping" style="top: 55%; left: 12%;" onclick="updateBrief('elmhurst')">
+                <span class="ping-pulse"></span>
+            </div>
+            <div class="ping" style="top: 38%; left: 65%;" onclick="updateBrief('river')">
+                <span class="ping-pulse"></span>
             </div>
         </div>
-    </main>
 
-    <section id="map-section" class="container">
-        <h2 class="section-title">Forensic Map: Path of Terror</h2>
-        <div class="map-wrapper">
-            <div id="crime-map">
-                <div class="map-point" data-loc="natchez" style="top: 25%; left: 30%;"></div>
-                <div class="map-point" data-loc="division" style="top: 45%; left: 55%;"></div>
-                <div class="map-point" data-loc="elmhurst" style="top: 50%; left: 15%;"></div>
-                <div class="map-point" data-loc="river" style="top: 40%; left: 60%;"></div>
+        <div id="briefing-room" class="card">
+            <div class="brief-header">
+                <span class="status-light"></span> LIVE INVESTIGATION BRIEF
             </div>
-            <div id="location-details" class="card">
-                <h3 id="loc-title">Investigation Brief</h3>
-                <p id="loc-desc" class="case-file-font">Click a blood-red marker to pull the declassified file from the investigation.</p>
-            </div>
+            <h3 id="loc-title" class="case-file-font">SECURE LINE ESTABLISHED</h3>
+            <p id="loc-desc" class="case-file-font">Select a red pulse on the grid to intercept declassified files.</p>
+            <div id="loc-intel" class="intel-tag" style="display:none;">PRIORITY: ALPHA</div>
         </div>
-    </section>
-
-    <section id="victims" style="background: #050505; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a;">
-        <div class="container">
-            <h2 class="section-title">Memorial: Honor Their Light</h2>
-            <div class="evidence-grid">
-                <div class="card">
-                    <span class="victim-tag">THE BUTTERFLY</span>
-                    <h3>Lorraine Borowski</h3>
-                    <p class="case-file-font" style="font-style: italic;">"A secretary from Elmhurst... dreaming of a house of her own, her mornings spent with her butterfly collection."</p>
-                </div>
-                <div class="card">
-                    <span class="victim-tag">THE STAR</span>
-                    <h3>Rose Beck Davis</h3>
-                    <p class="case-file-font" style="font-style: italic;">"A marketing star... her sharp mind and wit carved a path through the city's cutthroat ad world."</p>
-                </div>
-                <div class="card">
-                    <span class="victim-tag">THE SURVIVOR</span>
-                    <h3>Beverly Washington</h3>
-                    <p class="case-file-font" style="font-style: italic;">"I told those fuckers I’d live... her boutique dream a fucking lifeline."</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="container" id="preview">
-        <h2 class="section-title">Inside the Surgeon's Cut</h2>
-        <div class="preview-box">
-            <div class="toggle-container">
-                <button class="toggle-btn active" id="btn-orig" onclick="toggleProse('original')">ORIGINAL TEXT</button>
-                <button class="toggle-btn" id="btn-surg" onclick="toggleProse('surgeon')">SURGEON'S CUT</button>
-            </div>
-            <div id="original-text" class="case-file-font">
-                <p>"Detective Sarah Novak stood in the vacant lot near the Chicago River, her boots sinking into the muck, the stench of rot and river water burning her nostrils."</p>
-            </div>
-            <div id="surgeon-text" class="case-file-font" style="display:none; color:var(--neon-red);">
-                <p>"Detective Sarah Novak stood in the muck near the Chicago River, the stench of rot and stagnant water searing her nostrils."</p>
-            </div>
-        </div>
-    </section>
-
-    <div id="buy" class="cta-section" style="background: var(--blood-red); padding: 120px 20px; text-align: center; color: white;">
-        <h2 style="font-size: 3.5rem; text-shadow: 5px 5px 0 #000;">THE CITY THAT BLEEDS</h2>
-        <p class="case-file-font" style="font-size: 1.2rem; margin-bottom: 30px;">REFORMATTED. ILLUSTRATED. UNAPOLOGETIC.</p>
-        <a href="https://www.amazon.com/dp/B0FDPZ8R9T" target="_blank" class="btn" style="background: black;">GET IT ON AMAZON</a>
     </div>
-
-    <footer>
-        <p class="case-file-font" style="font-size: 1.2rem; color: white;">CHICAGO RIPPER CREW: REBOOT</p>
-        <p>A Documented Excavation by Dr. Stephen Dietrich-Kolokouris</p>
-        <p style="font-size: 0.75rem; color: #444; margin-top: 30px;">Copyright &copy; 2026. All Rights Reserved. ASIN: B0FDPZ8R9T</p>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
+</section>
