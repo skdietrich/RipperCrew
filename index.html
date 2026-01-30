@@ -12,11 +12,12 @@
 <body>
 
     <nav>
-        <a href="#about">The Pulse</a>
-        <a href="#map-section">Evidence Map</a>
-        <a href="#victims">The Fallen</a>
-        <a href="#preview">Surgeon's Cut</a>
-        <a href="https://www.amazon.com/dp/B0FDPZ8R9T" target="_blank" style="color:#ff0000; font-weight:bold;">Buy Now</a>
+        <div class="nav-container">
+            <a href="#about">The Pulse</a>
+            <a href="#map-section">Evidence Map</a>
+            <a href="#victims">The Fallen</a>
+            <a href="https://www.amazon.com/dp/B0FDPZ8R9T" target="_blank" class="buy-link">BUY NOW</a>
+        </div>
     </nav>
 
     <header>
@@ -26,16 +27,16 @@
     </header>
 
     <main class="container" id="about">
-        <h2 class="section-title">1981: The City That Bleeds</h2>
         <div class="content-grid">
             <div class="text-block">
+                <h2 class="section-title">1981: The City That Bleeds</h2>
                 <p class="case-file-font">"Downtown, the Sears Tower gleamed like a middle finger to the heavens."</p>
-                <p>Spring, 1981. Chicago was a paradox of ambition and decay. This is a clinical excavation of the Ripper Crew's reign.</p>
-                <a href="https://www.amazon.com/dp/B0FDPZ8R9T" target="_blank" class="btn">GET THE REBOOT</a>
+                <p>Spring, 1981. Chicago was a paradox of ambition and industrial decay. While bankers in the Loop ignored the screeching El trains, a red Dodge van haunted the West Side.</p>
+                <a href="https://www.amazon.com/dp/B0FDPZ8R9T" target="_blank" class="btn">SECURE THE REBOOT</a>
             </div>
             <div class="image-frame">
-                <img src="galleries/el-tracks.jpg" alt="Chicago El Tracks">
-                <p class="caption">EXHIBIT 1: Loop District, 1981</p>
+                <img src="galleries/el-tracks.jpg" alt="Chicago El Tracks 1981">
+                <p class="caption">EXHIBIT 1: The Loop District</p>
             </div>
         </div>
     </main>
@@ -44,50 +45,43 @@
         <h2 class="section-title">Forensic Map: Path of Terror</h2>
         <div class="map-interface">
             <div class="map-container">
-                <img src="galleries/forensic-map-base.jpg" alt="1981 Map" class="base-map-img">
+                <img src="galleries/forensic-map-base.jpg" alt="Crime Map" class="base-map-img">
                 <div class="ping" style="top: 22%; left: 35%;" onclick="updateBrief('natchez')"><span class="ping-pulse"></span></div>
                 <div class="ping" style="top: 48%; left: 52%;" onclick="updateBrief('division')"><span class="ping-pulse"></span></div>
                 <div class="ping" style="top: 55%; left: 12%;" onclick="updateBrief('elmhurst')"><span class="ping-pulse"></span></div>
                 <div class="ping" style="top: 38%; left: 65%;" onclick="updateBrief('river')"><span class="ping-pulse"></span></div>
             </div>
             <div id="briefing-room" class="card">
-                <h3 id="loc-title" class="case-file-font">SECURE LINE ESTABLISHED</h3>
-                <p id="loc-desc" class="case-file-font">Select a marker on the grid.</p>
+                <h3 id="loc-title" class="case-file-font">INVESTIGATION BRIEF</h3>
+                <p id="loc-desc" class="case-file-font">Intercepting declassified data... Select a marker on the grid.</p>
             </div>
         </div>
     </section>
 
     <section id="victims" class="container">
         <h2 class="section-title">Memorial: Honor Their Light</h2>
-        <div class="evidence-grid">
-            <div class="card">
-                <h3>Lorraine Borowski</h3>
-                <p class="case-file-font">"The Butterfly: Her mornings spent with her collection."</p>
-            </div>
+        <div class="content-grid">
             <div class="image-frame">
-                <img src="galleries/victim-motifs.jpg" alt="Motifs">
+                <img src="galleries/victim-motifs.jpg" alt="Victim Memorial Motifs">
             </div>
-        </div>
-    </section>
-
-    <section class="container" id="preview">
-        <h2 class="section-title">The Surgeon's Cut</h2>
-        <div class="preview-box">
-            <div class="toggle-container">
-                <button class="toggle-btn active" id="btn-orig" onclick="toggleProse('original')">ORIGINAL</button>
-                <button class="toggle-btn" id="btn-surg" onclick="toggleProse('surgeon')">SURGEON'S CUT</button>
-            </div>
-            <div id="original-text" class="case-file-font">
-                <p>"Detective Sarah Novak stood in the vacant lot..."</p>
-            </div>
-            <div id="surgeon-text" class="case-file-font" style="display:none; color:#ff0000;">
-                <p>"Detective Sarah Novak stood in the muck..."</p>
+            <div class="text-block">
+                <div class="card victim-card">
+                    <h3>The Butterfly: Lorraine Borowski</h3>
+                    <p class="case-file-font">"A secretary from Elmhurst... dreaming of a house of her own."</p>
+                </div>
+                <div class="card victim-card">
+                    <h3>The Star: Rose Beck Davis</h3>
+                    <p class="case-file-font">"A marketing star... her sharp mind carved a path through the city."</p>
+                </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p class="case-file-font">CHICAGO RIPPER CREW: REBOOT &copy; 2026</p>
+        <div class="container">
+            <p class="case-file-font">CHICAGO RIPPER CREW: REBOOT &copy; 2026</p>
+            <p>A Documented Excavation by Dr. Stephen Dietrich-Kolokouris</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
