@@ -1,92 +1,135 @@
-/* --- THE FOUNDATION --- */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+/* --- THE MASTER REBOOT CSS --- */
+:root {
+    --blood: #7b0000;
+    --glow: #ff4d4d;
+    --bg: #050505;
+    --card: #0c0c0c;
+    --text: #c0c0c0;
 }
 
-:root {
-    --blood-red: #8b0000;
-    --neon-red: #ff0000;
-    --dark-bg: #0a0a0a;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    background-color: var(--dark-bg);
-    color: #eee;
-    font-family: 'Courier New', Courier, monospace; /* Gritty 1981 feel */
-    line-height: 1.6;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.8;
+    overflow-x: hidden;
 }
 
-/* --- THE IMAGE TAMER (Crucial) --- */
-img {
-    max-width: 100%; /* No image can ever be bigger than the screen */
-    height: auto;
-    display: block;
-}
-
-/* --- THE EXPANDER (Fixes the "Small Index" issue) --- */
+/* THE CONTAINER - This stops the "shitty/small" look */
 .container {
-    width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 60px 0;
+    padding: 100px 20px;
+    width: 100%;
 }
 
-/* --- HEADER / HERO SECTION --- */
+/* --- CINEMATIC HEADER --- */
 header {
-    min-height: 90vh; /* Forces the header to be full-screen */
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), 
                 url('galleries/neon-chicago.jpg') center/cover no-repeat;
-    border-bottom: 3px solid var(--blood-red);
     text-align: center;
+    border-bottom: 4px solid var(--blood);
 }
 
 .hero-img {
-    width: 300px !important; /* Constrains the book cover */
-    margin-bottom: 20px;
-    box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+    width: 320px !important;
+    filter: drop-shadow(0 0 30px rgba(123, 0, 0, 0.6));
+    margin-bottom: 40px;
+    transition: transform 0.5s ease;
 }
 
-.glitch {
-    font-size: clamp(2.5rem, 8vw, 5rem);
+.hero-img:hover { transform: scale(1.05); }
+
+.glitch-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(3rem, 10vw, 6rem);
+    letter-spacing: 5px;
     color: #fff;
-    text-transform: uppercase;
-    text-shadow: 3px 3px var(--blood-red);
+    text-shadow: 4px 4px var(--blood);
 }
 
-/* --- GRID LOGIC (Fixes the static layout) --- */
-.content-grid {
+/* --- SECTION STYLING --- */
+.section-label {
+    font-family: 'Special Elite', serif;
+    color: var(--blood);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.section-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 40px;
+}
+
+/* THE GRID - Professional Layout */
+.grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 80px;
     align-items: center;
 }
 
-/* --- MAP STYLING --- */
-.map-interface {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    background: #000;
-    padding: 20px;
+.case-file {
+    font-family: 'Special Elite', serif;
+    background: var(--card);
+    padding: 40px;
+    border-left: 3px solid var(--blood);
+    font-size: 1.1rem;
+    color: #aaa;
+}
+
+/* --- IMAGE TAMING --- */
+.img-frame {
+    position: relative;
+    overflow: hidden;
     border: 1px solid #222;
 }
 
-.map-container {
-    position: relative;
-    border: 1px solid var(--blood-red);
+.img-frame img {
+    width: 100%;
+    filter: grayscale(100%) contrast(1.2);
+    transition: 0.5s;
+}
+
+.img-frame:hover img {
+    filter: grayscale(0%) contrast(1);
+}
+
+/* --- MAP SYSTEM --- */
+.map-box {
+    background: #000;
+    border: 1px solid #222;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+}
+
+@media (max-width: 900px) { .map-box { grid-template-columns: 1fr; } }
+
+.map-view { position: relative; }
+
+.intel-view {
+    padding: 40px;
+    background: #080808;
+    border-left: 1px solid #222;
 }
 
 .ping {
     position: absolute;
-    width: 15px;
-    height: 15px;
-    background: var(--neon-red);
+    width: 16px;
+    height: 16px;
+    background: var(--glow);
     border-radius: 50%;
     cursor: pointer;
+    box-shadow: 0 0 15px var(--glow);
 }
