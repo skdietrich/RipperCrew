@@ -1,8 +1,9 @@
+[cite_start]// Interactive Map Data [cite: 78, 114, 216, 615]
 const locationData = {
-    natchez: { title: "2720 North Natchez Avenue", desc: "The Lair. An attic 'chapel' reeking of candle wax, pentagrams on the rafters." },
-    division: { title: "Division Street", desc: "The Carnival of Vice. Where neon bleeds into shadow and predators size up their prey." },
-    elmhurst: { title: "Suburban Elmhurst", desc: "The Site of Abduction. Where the butterfly collection was left behind." },
-    river: { title: "Chicago River Vacant Lot", desc: "First Blood. The clinical mutilation of Linda Sutton was discovered here." }
+    [cite_start]natchez: { title: "2720 North Natchez Avenue", desc: "The Lair. An attic 'chapel' reeking of candle wax, with pentagrams scratched into the rafters. [cite: 78, 480]" },
+    division: { title: "Division Street", desc: "The Carnival of Vice. [cite_start]Where neon bleeds into shadow and the crew sized up their targets under flickering streetlights. [cite: 115]" },
+    elmhurst: { title: "Suburban Elmhurst", desc: "The Shattered Shield. [cite_start]Where Lorraine Borowski's light was taken on a quiet Saturday morning. [cite: 615, 648]" },
+    river: { title: "Chicago River Vacant Lot", desc: "First Blood. [cite_start]The site where Linda Sutton was found—surgical brutality marked with piano wire. [cite: 216, 233]" }
 };
 
 document.querySelectorAll('.map-point').forEach(point => {
@@ -15,6 +16,7 @@ document.querySelectorAll('.map-point').forEach(point => {
     });
 });
 
+[cite_start]// Surgeon's Cut Toggle logic [cite: 216]
 function toggleProse(mode) {
     const original = document.getElementById('original-text');
     const surgeon = document.getElementById('surgeon-text');
