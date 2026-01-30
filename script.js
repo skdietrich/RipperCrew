@@ -6,10 +6,6 @@ const intelligence = {
     division: {
         title: "DIVISION STREET - THE CARNIVAL",
         desc: "Red Dodge van surveillance confirmed. High contact density area between 2300 and 0400 hours."
-    },
-    elmhurst: {
-        title: "ELMHURST - PERIMETER BREACH",
-        desc: "Point of abduction for Lorraine Borowski. Suburban safety protocols failed. Evidence recovered at disposal site later."
     }
 };
 

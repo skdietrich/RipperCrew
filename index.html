@@ -3,56 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chicago Ripper Crew: Reboot | Dr. Stephen Dietrich-Kolokouris</title>
+    <title>Chicago Ripper Crew | Official Site</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Special+Elite&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav>
-        <a href="#about">Investigation</a>
-        <a href="#map">Forensics</a>
-        <a href="https://www.amazon.com/dp/B0FDPZ8R9T" target="_blank" class="buy-link">Order Book</a>
-    </nav>
-
-    <header>
-        <img src="galleries/Chicago_Ripper_Crew_cover_600dpi.jpg" class="book-cover" alt="Book Cover">
-        <h1>RIPPER CREW</h1>
-        <p class="author-tag">DR. STEPHEN DIETRICH-KOLOKOURIS</p>
+    <header class="parallax-section hero">
+        <div class="hero-content">
+            <img src="galleries/Chicago_Ripper_Crew_cover_600dpi.jpg" style="width:260px; filter: drop-shadow(0 0 50px #000);">
+            <h1>RIPPER CREW</h1>
+            <p class="sub-title">Rebooted & Illustrated</p>
+        </div>
     </header>
 
-    <div class="container" id="about">
-        <div class="content-section">
-            <p class="case-quote">"Downtown, the Sears Tower gleamed like a middle finger to the heavens."</p>
-            <p>A clinical excavation of 1981 Chicago—a paradox of gleaming ambition and industrial decay. This rebooted edition features declassified insights and illustrated evidence from the Ripper Crew's reign.</p>
-            <a href="https://www.amazon.com/dp/B0FDPZ8R9T" target="_blank" class="btn-buy">GET THE ILLUSTRATED EDITION</a>
+    <section class="parallax-section exhibit">
+        <div class="glass-panel">
+            <p class="sub-title" style="margin-bottom: 20px;">Case File 1981</p>
+            <p style="font-size: 1.2rem; font-family: 'Special Elite'; color: #aaa;">"Downtown, the Sears Tower gleamed like a middle finger to the heavens."</p>
+            <p style="margin-top: 20px;">This is a clinical excavation of 1981 Chicago—a paradox of gleaming ambition and industrial decay. A city divided, haunted by a red Dodge van.</p>
+            <a href="https://www.amazon.com/dp/B0FDPZ8R9T" target="_blank" class="cta-button">Order on Amazon</a>
         </div>
-        
-        <div class="content-section">
-            <h2 class="section-header">EXHIBIT: THE LOOP</h2>
-            <img src="galleries/el-tracks.jpg" class="exhibit-img">
-            <p class="caption">Spring, 1981. The screeching El trains of Chicago's West Side.</p>
-        </div>
+    </section>
 
-        <div class="content-section" id="map">
-            <h2 class="section-header">FORENSIC TERMINAL</h2>
-            <div class="map-wrapper">
-                <div class="map-area">
-                    <img src="galleries/forensic-map-base.jpg" alt="Crime Map">
-                    <div class="ping" style="top: 25%; left: 35%;" onclick="updateBrief('natchez')"></div>
-                    <div class="ping" style="top: 45%; left: 55%;" onclick="updateBrief('division')"></div>
-                    <div class="ping" style="top: 55%; left: 15%;" onclick="updateBrief('elmhurst')"></div>
-                </div>
-                <div class="intel-box">
-                    <h3 id="loc-title">SELECT COORDINATES</h3>
-                    <p id="loc-desc">Intercepting precinct data... click map markers to declassify.</p>
-                </div>
+    <section class="map-container">
+        <div class="map-ui">
+            <div style="position:relative;">
+                <img src="galleries/forensic-map-base.jpg" style="width:100%; display:block; opacity:0.6;">
+                <div class="ping" style="top:25%; left:35%; position:absolute; width:15px; height:15px; background:red; border-radius:50%; box-shadow:0 0 10px red; cursor:pointer;" onclick="updateBrief('natchez')"></div>
+                <div class="ping" style="top:45%; left:55%; position:absolute; width:15px; height:15px; background:red; border-radius:50%; box-shadow:0 0 10px red; cursor:pointer;" onclick="updateBrief('division')"></div>
+            </div>
+            <div style="padding:60px; background:#080808; border-left:1px solid #222;">
+                <h3 id="loc-title" style="font-family:'Oswald'; color:var(--blood); letter-spacing:2px;">FORENSIC LOG</h3>
+                <p id="loc-desc" style="font-family:'Special Elite'; margin-top:20px; font-size:0.9rem; color:#666;">Select a coordinate on the 1981 grid to declassify files.</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <footer>
-        CHICAGO RIPPER CREW: REBOOT &copy; 2026 | ASIN: B0FDPZ8R9T
+    <footer style="padding: 100px; text-align: center; color: #333; font-size: 0.8rem;">
+        DR. STEPHEN DIETRICH-KOLOKOURIS &copy; 2026 | RIPPER CREW: REBOOT
     </footer>
 
     <script src="script.js"></script>

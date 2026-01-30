@@ -1,136 +1,100 @@
+/* --- CINEMATIC RESET --- */
 :root {
     --blood: #8b0000;
-    --bg: #0d0d0d;
-    --text: #f4f4f4;
-    --card: #151515;
+    --accent: #ff0000;
+    --bg: #050505;
+    --glass: rgba(15, 15, 15, 0.85);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     background-color: var(--bg);
-    color: var(--text);
+    color: #d1d1d1;
     font-family: 'Roboto', sans-serif;
-    line-height: 1.8;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- THE PARALLAX ENGINE --- */
+.parallax-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-attachment: fixed; /* This creates the professional scroll effect */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hero { background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('galleries/neon-chicago.jpg'); }
+.exhibit { background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('galleries/el-tracks.jpg'); }
+
+/* --- TYPOGRAPHY (The "Expensive" Look) --- */
+.hero-content {
     text-align: center;
-}
-
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 60px 20px;
-}
-
-/* NAVIGATION */
-nav {
-    padding: 25px;
-    background: #000;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid #222;
-}
-
-nav a {
-    color: #888;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-nav a:hover, .buy-link { color: var(--blood); font-weight: bold; }
-
-/* HEADER */
-header { padding: 100px 20px; background: #000; }
-
-.book-cover {
-    width: 240px;
-    margin-bottom: 30px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.8);
-    border: 1px solid #333;
+    z-index: 2;
 }
 
 h1 {
     font-family: 'Oswald', sans-serif;
-    font-size: 3.5rem;
-    letter-spacing: 6px;
-    margin-bottom: 5px;
-}
-
-.author-tag {
-    font-family: 'Special Elite', serif;
-    color: var(--blood);
-    font-size: 1rem;
-}
-
-/* CONTENT BLOCKS */
-.content-section {
-    background: var(--card);
-    padding: 60px 40px;
-    border: 1px solid #222;
-    margin-bottom: 50px;
-}
-
-.section-header {
-    font-family: 'Oswald', sans-serif;
-    margin-bottom: 30px;
-    letter-spacing: 3px;
-}
-
-.case-quote {
-    font-family: 'Special Elite', serif;
-    color: #999;
-    font-style: italic;
-    margin-bottom: 25px;
-    font-size: 1.2rem;
-}
-
-.exhibit-img { border: 1px solid #333; width: 100%; }
-
-.caption { font-size: 0.8rem; color: #555; margin-top: 15px; }
-
-.btn-buy {
-    display: inline-block;
-    padding: 18px 40px;
-    background: var(--blood);
+    font-size: clamp(3rem, 10vw, 6rem);
+    letter-spacing: 15px;
+    text-transform: uppercase;
     color: #fff;
+    margin: 20px 0;
+}
+
+.sub-title {
+    font-family: 'Special Elite', serif;
+    letter-spacing: 5px;
+    color: var(--blood);
+    text-transform: uppercase;
+}
+
+/* --- INTERACTIVE PANELS --- */
+.glass-panel {
+    background: var(--glass);
+    backdrop-filter: blur(10px); /* This is the modern 'Glass' look */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 60px;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 20px 50px;
+    background: var(--blood);
+    color: white;
     text-decoration: none;
     font-family: 'Oswald';
-    letter-spacing: 2px;
-    margin-top: 20px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: 0.4s;
+    margin-top: 30px;
 }
 
-/* MAP TERMINAL */
-.map-wrapper {
+.cta-button:hover {
+    background: var(--accent);
+    box-shadow: 0 0 30px rgba(255,0,0,0.3);
+}
+
+/* --- MAP TERMINAL (Full Width) --- */
+.map-container {
+    padding: 100px 0;
     background: #000;
-    border: 1px solid #333;
-    margin-top: 20px;
 }
 
-.map-area { position: relative; }
-
-.map-area img { width: 100%; display: block; opacity: 0.7; }
-
-.ping {
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background: red;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 0 10px red;
+.map-ui {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    border: 1px solid #222;
 }
 
-.intel-box {
-    padding: 30px;
-    background: #0a0a0a;
-    border-top: 1px solid #333;
-    min-height: 150px;
-}
-
-#loc-title { font-family: 'Oswald'; color: var(--blood); font-size: 1.2rem; }
-#loc-desc { font-family: 'Special Elite'; font-size: 0.9rem; margin-top: 10px; color: #888; }
-
-footer { padding: 80px; color: #444; font-size: 0.7rem; background: #000; }
+@media (max-width: 900px) { .map-ui { grid-template-columns: 1fr; } }
