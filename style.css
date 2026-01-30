@@ -1,91 +1,92 @@
-/* --- 1. THE FOUNDATION --- */
-:root {
-    --blood-red: #8b0000;
-    --neon-red: #ff0000;
-    --dark-bg: #0a0a0a;
-}
-
+/* --- THE FOUNDATION --- */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* This fixes the "Small Index" - it forces the page to be at least the height of the screen */
-html, body {
-    height: 100%;
+:root {
+    --blood-red: #8b0000;
+    --neon-red: #ff0000;
+    --dark-bg: #0a0a0a;
+}
+
+body {
     background-color: var(--dark-bg);
     color: #eee;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Courier New', Courier, monospace; /* Gritty 1981 feel */
+    line-height: 1.6;
 }
 
-/* --- 2. THE EXPANDER (Fixes the small layout) --- */
-.container {
-    width: 100%;
-    max-width: 1200px; /* Makes the site feel wide and cinematic */
-    margin: 0 auto;
-    padding: 100px 20px;
-}
-
-/* --- 3. IMAGE TAMERS (Fixes the full-sized image blowout) --- */
+/* --- THE IMAGE TAMER (Crucial) --- */
 img {
-    max-width: 100%; /* Prevents images from being larger than the screen */
+    max-width: 100%; /* No image can ever be bigger than the screen */
     height: auto;
     display: block;
 }
 
-/* Constrain the hero/book cover so it doesn't take over the page */
-.hero-img {
-    width: 350px !important;
-    margin: 0 auto 30px auto;
-    box-shadow: 0 0 50px rgba(139, 0, 0, 0.5);
-    border: 1px solid #333;
+/* --- THE EXPANDER (Fixes the "Small Index" issue) --- */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 0;
 }
 
-/* --- 4. HEADER (The "Noir" Entrance) --- */
+/* --- HEADER / HERO SECTION --- */
 header {
-    min-height: 90vh; /* Forces the header to take up almost the whole screen */
+    min-height: 90vh; /* Forces the header to be full-screen */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
                 url('galleries/neon-chicago.jpg') center/cover no-repeat;
     border-bottom: 3px solid var(--blood-red);
+    text-align: center;
+}
+
+.hero-img {
+    width: 300px !important; /* Constrains the book cover */
+    margin-bottom: 20px;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
 }
 
 .glitch {
-    font-family: 'Oswald', sans-serif;
-    font-size: clamp(3rem, 10vw, 6rem); /* Massive text that scales */
-    text-transform: uppercase;
+    font-size: clamp(2.5rem, 8vw, 5rem);
     color: #fff;
-    text-shadow: 4px 4px var(--blood-red);
+    text-transform: uppercase;
+    text-shadow: 3px 3px var(--blood-red);
 }
 
-/* --- 5. THE CONTENT GRID (Side-by-side Desktop Fix) --- */
+/* --- GRID LOGIC (Fixes the static layout) --- */
 .content-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 60px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
     align-items: center;
 }
 
-.case-file-font {
-    font-family: 'Special Elite', serif;
-    font-size: 1.2rem;
-    line-height: 1.8;
-}
-
-/* --- 6. MAP FIX (Actually contains the map) --- */
+/* --- MAP STYLING --- */
 .map-interface {
     display: grid;
-    grid-template-columns: 1.6fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     background: #000;
     padding: 20px;
     border: 1px solid #222;
 }
 
-@media (max-width: 800px) {
-    .map-interface { grid-template-columns: 1fr; }
+.map-container {
+    position: relative;
+    border: 1px solid var(--blood-red);
+}
+
+.ping {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: var(--neon-red);
+    border-radius: 50%;
+    cursor: pointer;
 }
