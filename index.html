@@ -3,85 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chicago Ripper Crew: Reboot | Dr. Stephen Dietrich-Kolokouris</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Oswald:wght@700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    
+    <title>Chicago Ripper Crew | Reboot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Special+Elite&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav>
-        <div class="nav-container">
-            <a href="#about">The Pulse</a>
-            <a href="#map-section">Evidence Map</a>
-            <a href="#victims">The Fallen</a>
-            <a href="https://www.amazon.com/dp/B0FDPZ8R9T" target="_blank" class="buy-link">BUY NOW</a>
-        </div>
-    </nav>
-
     <header>
-        <img src="galleries/Chicago_Ripper_Crew_cover_600dpi.jpg" alt="Book Cover" class="hero-img">
-        <h1 class="glitch">CHICAGO RIPPER CREW</h1>
-        <h2 class="case-file-font">REBOOT</h2>
+        <img src="galleries/Chicago_Ripper_Crew_cover_600dpi.jpg" class="hero-img" alt="Book Cover">
+        <h1 class="glitch-title">RIPPER CREW</h1>
+        <p class="section-label">A Clinical Reboot by Dr. Stephen Dietrich-Kolokouris</p>
     </header>
 
-    <main class="container" id="about">
-        <div class="content-grid">
-            <div class="text-block">
-                <h2 class="section-title">1981: The City That Bleeds</h2>
-                <p class="case-file-font">"Downtown, the Sears Tower gleamed like a middle finger to the heavens."</p>
-                <p>Spring, 1981. Chicago was a paradox of ambition and industrial decay. While bankers in the Loop ignored the screeching El trains, a red Dodge van haunted the West Side.</p>
-                <a href="https://www.amazon.com/dp/B0FDPZ8R9T" target="_blank" class="btn">SECURE THE REBOOT</a>
+    <section class="container">
+        <div class="grid">
+            <div class="text-side">
+                <span class="section-label">Case Entry: 1981</span>
+                <h2 class="section-title">The City That Bleeds</h2>
+                <div class="case-file">
+                    "Downtown, the Sears Tower gleamed like a middle finger to the heavens." <br><br>
+                    This isn't just a story. It's a clinical excavation of 1981 Chicago—a paradox of gleaming ambition and industrial decay.
+                </div>
+                <a href="https://www.amazon.com/dp/B0FDPZ8R9T" target="_blank" style="display:inline-block; margin-top:30px; padding: 20px 40px; background: var(--blood); color: #fff; text-decoration:none; font-family:'Oswald'; letter-spacing:2px;">SECURE THE REBOOT</a>
             </div>
-            <div class="image-frame">
-                <img src="galleries/el-tracks.jpg" alt="Chicago El Tracks 1981">
-                <p class="caption">EXHIBIT 1: The Loop District</p>
-            </div>
-        </div>
-    </main>
-
-    <section id="map-section" class="container">
-        <h2 class="section-title">Forensic Map: Path of Terror</h2>
-        <div class="map-interface">
-            <div class="map-container">
-                <img src="galleries/forensic-map-base.jpg" alt="Crime Map" class="base-map-img">
-                <div class="ping" style="top: 22%; left: 35%;" onclick="updateBrief('natchez')"><span class="ping-pulse"></span></div>
-                <div class="ping" style="top: 48%; left: 52%;" onclick="updateBrief('division')"><span class="ping-pulse"></span></div>
-                <div class="ping" style="top: 55%; left: 12%;" onclick="updateBrief('elmhurst')"><span class="ping-pulse"></span></div>
-                <div class="ping" style="top: 38%; left: 65%;" onclick="updateBrief('river')"><span class="ping-pulse"></span></div>
-            </div>
-            <div id="briefing-room" class="card">
-                <h3 id="loc-title" class="case-file-font">INVESTIGATION BRIEF</h3>
-                <p id="loc-desc" class="case-file-font">Intercepting declassified data... Select a marker on the grid.</p>
+            <div class="img-frame">
+                <img src="galleries/el-tracks.jpg" alt="1981 Chicago">
             </div>
         </div>
     </section>
 
-    <section id="victims" class="container">
-        <h2 class="section-title">Memorial: Honor Their Light</h2>
-        <div class="content-grid">
-            <div class="image-frame">
-                <img src="galleries/victim-motifs.jpg" alt="Victim Memorial Motifs">
-            </div>
-            <div class="text-block">
-                <div class="card victim-card">
-                    <h3>The Butterfly: Lorraine Borowski</h3>
-                    <p class="case-file-font">"A secretary from Elmhurst... dreaming of a house of her own."</p>
+    <section class="container" style="background: #080808; max-width: 100%;">
+        <div class="container" id="map-section">
+            <span class="section-label">Interactive Logistics</span>
+            <h2 class="section-title">Forensic Map</h2>
+            <div class="map-box">
+                <div class="map-view">
+                    <img src="galleries/forensic-map-base.jpg" style="width:100%; opacity: 0.6;">
+                    <div class="ping" style="top: 25%; left: 30%;" onclick="updateMap('Natchez')"></div>
+                    <div class="ping" style="top: 45%; left: 55%;" onclick="updateMap('Division')"></div>
                 </div>
-                <div class="card victim-card">
-                    <h3>The Star: Rose Beck Davis</h3>
-                    <p class="case-file-font">"A marketing star... her sharp mind carved a path through the city."</p>
+                <div class="intel-view">
+                    <h3 id="intel-title" class="section-label">Intercepting Data...</h3>
+                    <p id="intel-body" class="case-file-font">Select a crimson marker on the grid to declassify investigation files.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <p class="case-file-font">CHICAGO RIPPER CREW: REBOOT &copy; 2026</p>
-            <p>A Documented Excavation by Dr. Stephen Dietrich-Kolokouris</p>
-        </div>
+    <footer style="padding: 100px 20px; text-align: center; border-top: 1px solid #222;">
+        <p class="section-label">Ripper Crew: Reboot &copy; 2026</p>
+        <p style="font-size: 0.8rem; color: #444; margin-top: 10px;">ASIN: B0FDPZ8R9T</p>
     </footer>
 
     <script src="script.js"></script>
