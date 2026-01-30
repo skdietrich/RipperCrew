@@ -3,37 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chicago Ripper Crew: Reboot | The Complete Forensic Archive</title>
+    <title>Chicago Ripper Crew: Reboot | Official Archive</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
     <style>
-        /* =========================================
-           1. CORE VARIABLES & RESET
-           ========================================= */
+        /* --- CORE VARIABLES --- */
         :root {
-            --bg-deep: #020202;
+            --bg-deep: #050505;
             --bg-panel: #0b0b0b;
-            --bg-element: #141414;
+            --bg-element: #111111;
             
-            --accent-red: #8a0000;
+            --accent-red: #aa0000;
             --accent-bright: #ff0000;
             --accent-gold: #c5a059;
-            --accent-blue: #0044ff;
             
             --text-main: #e0e0e0;
             --text-muted: #777777;
             --text-terminal: #33ff33;
             
-            --border-color: #2a2a2a;
-            --scanline-color: rgba(0, 0, 0, 0.5);
+            --border-color: #222;
             
             --font-head: 'Oswald', sans-serif;
             --font-body: 'Inter', sans-serif;
             --font-code: 'Share Tech Mono', monospace;
         }
 
+        /* --- RESET & BASE --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         html { 
@@ -45,86 +42,57 @@
             background-color: var(--bg-deep);
             color: var(--text-main);
             font-family: var(--font-body);
-            line-height: 1.7;
+            line-height: 1.6;
             overflow-x: hidden;
             opacity: 0;
-            transition: opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: opacity 1s ease-in;
         }
 
         body.loaded { opacity: 1; }
 
-        ::-webkit-scrollbar { width: 8px; background: #000; }
-        ::-webkit-scrollbar-thumb { background: var(--accent-red); border-radius: 4px; }
-        ::-webkit-scrollbar-track { background: #111; }
+        ::-webkit-scrollbar { width: 6px; background: #000; }
+        ::-webkit-scrollbar-thumb { background: var(--accent-red); }
 
-        /* =========================================
-           2. TYPOGRAPHY & UTILITIES
-           ========================================= */
+        /* --- TYPOGRAPHY --- */
         h1, h2, h3, h4, h5 {
             font-family: var(--font-head);
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
             line-height: 1.1;
-            color: #fff;
         }
-
-        p { margin-bottom: 1.5rem; }
 
         .text-highlight { color: var(--accent-red); }
         .text-mono { font-family: var(--font-code); }
         .text-muted { color: var(--text-muted); }
-        .text-center { text-align: center; }
-        .text-right { text-align: right; }
         
-        /* Badges */
         .badge {
             display: inline-block;
-            padding: 4px 10px;
+            padding: 3px 8px;
             font-family: var(--font-code);
             font-size: 0.65rem;
             border: 1px solid currentColor;
-            margin-right: 6px;
-            margin-bottom: 6px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
         }
-        .badge.fatal { color: var(--accent-bright); border-color: var(--accent-red); background: rgba(255, 0, 0, 0.05); }
-        .badge.survivor { color: var(--accent-gold); border-color: var(--accent-gold); background: rgba(197, 160, 89, 0.05); }
-        .badge.unknown { color: var(--text-muted); border-color: var(--text-muted); background: rgba(255, 255, 255, 0.02); }
+        .badge.fatal { color: var(--accent-bright); border-color: var(--accent-red); }
+        .badge.survivor { color: var(--accent-gold); border-color: var(--accent-gold); }
+        .badge.unknown { color: var(--text-muted); border-color: var(--text-muted); }
 
-        /* Container & Grid System */
+        /* --- LAYOUT UTILS --- */
         .container {
-            max-width: 1300px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 30px;
+            padding: 0 20px;
         }
 
-        .section-padding { padding: 120px 0; border-bottom: 1px solid var(--border-color); }
-        
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+        .section-padding { padding: 100px 0; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
         .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
 
-        /* Glitch Effect Utility */
-        .glitch-text { position: relative; display: inline-block; }
-        .glitch-text::before, .glitch-text::after {
-            content: attr(data-text);
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-deep);
-        }
-        .glitch-text::before {
-            left: 2px; text-shadow: -1px 0 #ff00c1; clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim 5s infinite linear alternate-reverse;
-        }
-        .glitch-text::after {
-            left: -2px; text-shadow: -1px 0 #00fff9; clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim2 5s infinite linear alternate-reverse;
-        }
-
-        /* =========================================
-           3. HERO HEADER
-           ========================================= */
+        /* --- HERO HEADER --- */
         header {
             height: 100vh;
             width: 100%;
@@ -137,325 +105,545 @@
         }
 
         .hero-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #1a0000 0%, #0a0a0a 50%, #000000 100%);
             z-index: 0;
-            background: #000;
         }
         
-        /* Image Setting */
         .hero-img {
-            width: 100%; height: 100%; 
+            width: 100%; 
+            height: 100%; 
             object-fit: cover; 
-            object-position: center 20%;
-            opacity: 0.6; /* Balanced for visibility vs noir */
-            transform: scale(1);
-            animation: kenBurns 20s ease-out infinite alternate;
+            object-position: center;
+            opacity: 0.4; 
+            transform: scale(1.05); 
+            transition: transform 10s ease;
         }
 
         .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(180deg, rgba(2,2,2,0.6) 0%, rgba(2,2,2,0.95) 100%),
-                        radial-gradient(circle, transparent 20%, #020202 90%);
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(5,5,5,0.3) 0%, rgba(5,5,5,0.85) 100%);
             z-index: 1;
         }
 
         .hero-content {
-            position: relative; z-index: 10; text-align: center; max-width: 1000px; margin-top: 60px;
-        }
-
-        .author-tag {
-            background: rgba(255,255,255,0.05);
-            padding: 8px 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-            display: inline-block;
-            margin-bottom: 25px;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+            margin-top: 40px;
         }
 
         .hero-title {
-            font-size: 7rem; font-weight: 700; color: #fff; text-shadow: 0 0 50px rgba(0,0,0,0.8);
-            margin-bottom: 15px; letter-spacing: -2px; line-height: 0.9;
+            font-size: 6rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 40px #000, 0 0 20px var(--accent-red);
+            margin-bottom: 10px;
         }
 
         .hero-sub {
-            font-size: 1.8rem; letter-spacing: 0.4em; color: #bbb;
-            border-top: 1px solid var(--accent-red); border-bottom: 1px solid var(--accent-red);
-            padding: 15px 40px; display: inline-block; margin-bottom: 30px;
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            color: #ccc;
+            border-top: 1px solid var(--accent-red);
+            border-bottom: 1px solid var(--accent-red);
+            padding: 15px 0;
+            display: inline-block;
+            margin-bottom: 20px;
         }
 
-        /* =========================================
-           4. NAVIGATION
-           ========================================= */
+        /* --- NAVIGATION --- */
         nav {
-            position: sticky; top: 0; z-index: 1000;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
             background: rgba(5, 5, 5, 0.95);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
 
         .nav-inner {
-            display: flex; justify-content: space-between; align-items: center; height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
         }
 
-        .nav-logo {
-            font-family: var(--font-head); font-weight: 700; color: var(--accent-red);
-            font-size: 1.5rem; letter-spacing: 2px; border: 2px solid var(--accent-red); padding: 5px 15px;
+        .nav-logo { 
+            font-family: var(--font-head); 
+            font-weight: 700; 
+            color: var(--accent-red); 
+            font-size: 1.2rem; 
+            letter-spacing: 1px; 
         }
         
-        .nav-links { display: flex; list-style: none; gap: 40px; }
-        .nav-links a {
-            text-decoration: none; color: var(--text-main); font-family: var(--font-code);
-            text-transform: uppercase; font-size: 0.85rem; transition: color 0.3s;
-            letter-spacing: 1px;
+        .nav-links { 
+            display: flex; 
+            list-style: none; 
+            gap: 30px; 
         }
-        .nav-links a:hover { color: var(--accent-red); text-shadow: 0 0 10px var(--accent-red); }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-family: var(--font-code);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover { color: var(--accent-red); }
 
-        /* =========================================
-           5. PREMISE SECTION
-           ========================================= */
+        /* --- SECTION: THE PREMISE --- */
         .premise-card {
-            background: var(--bg-panel); border: 1px solid var(--border-color); padding: 50px;
-            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            background: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         
         .premise-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 3px; height: 100%;
             background: var(--accent-red);
         }
 
-        .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-top: 40px; }
-        
-        .stat-box {
-            background: var(--bg-element); padding: 20px; border: 1px solid var(--border-color);
-            text-align: center; transition: background 0.3s;
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
         }
-        .stat-box:hover { background: #1a1a1a; }
-        
-        .stat-num {
-            font-family: var(--font-head); font-size: 3rem; color: var(--accent-red); line-height: 1;
-            text-shadow: 0 0 20px rgba(170, 0, 0, 0.3);
-        }
-        .stat-label { font-family: var(--font-code); font-size: 0.75rem; color: var(--text-muted); margin-top: 8px; }
 
-        /* =========================================
-           6. TIMELINE SECTION (EXPANDED)
-           ========================================= */
-        .timeline-header { text-align: center; margin-bottom: 80px; }
-        .timeline-container { position: relative; max-width: 900px; margin: 0 auto; }
+        .stat-box {
+            background: var(--bg-element);
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
         
+        .stat-num { 
+            font-family: var(--font-head); 
+            font-size: 2rem; 
+            color: var(--accent-red); 
+            line-height: 1; 
+        }
+        
+        .stat-label { 
+            font-family: var(--font-code); 
+            font-size: 0.7rem; 
+            color: var(--text-muted); 
+            margin-top: 5px; 
+        }
+
+        /* --- SECTION: TIMELINE --- */
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
         .timeline-line {
-            position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
-            background: linear-gradient(to bottom, transparent, var(--border-color) 10%, var(--border-color) 90%, transparent);
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #333;
             transform: translateX(-50%);
         }
 
         .timeline-event {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 60px; align-items: center;
-            opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+            align-items: center;
         }
-        .timeline-event.visible { opacity: 1; transform: translateY(0); }
 
         .timeline-date {
-            text-align: right; font-family: var(--font-head); font-size: 1.8rem; color: var(--accent-red);
-            font-weight: 700; line-height: 1;
+            text-align: right;
+            font-family: var(--font-head);
+            font-size: 1.2rem;
+            color: var(--accent-red);
         }
 
         .timeline-content {
-            background: var(--bg-panel); padding: 30px; border: 1px solid var(--border-color);
-            position: relative; border-left: 4px solid #333;
+            background: var(--bg-panel);
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            position: relative;
         }
-        
-        /* Timeline Dots */
+
         .timeline-content::after {
-            content: ''; position: absolute; top: 50%; left: -66px; width: 12px; height: 12px;
-            background: var(--bg-deep); border: 2px solid var(--accent-red); border-radius: 50%;
-            transform: translateY(-50%); box-shadow: 0 0 15px var(--accent-red); z-index: 5;
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -45px;
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 10px #fff;
         }
 
         .timeline-event:nth-child(even) { direction: rtl; }
         .timeline-event:nth-child(even) .timeline-date { text-align: left; }
-        .timeline-event:nth-child(even) .timeline-content { text-align: left; direction: ltr; border-left: 1px solid var(--border-color); border-right: 4px solid #333; }
-        .timeline-event:nth-child(even) .timeline-content::after { left: auto; right: -66px; }
+        .timeline-event:nth-child(even) .timeline-content { text-align: left; direction: ltr; }
+        .timeline-event:nth-child(even) .timeline-content::after { left: auto; right: -45px; }
 
-        /* =========================================
-           7. SUSPECTS SECTION
-           ========================================= */
+        /* --- SECTION: SUSPECTS --- */
         .suspect-card {
-            background: var(--bg-panel); border: 1px solid var(--border-color);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
+
         .suspect-card:hover {
-            border-color: var(--accent-red); transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-color: var(--accent-red);
+            transform: translateY(-5px);
         }
-        
+
         .mugshot-zone {
-            height: 280px; background: #000; overflow: hidden; position: relative;
+            height: 300px;
+            background: linear-gradient(135deg, #1a0000 0%, #000000 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border-bottom: 1px solid var(--border-color);
         }
-        
-        .mugshot-img {
-            width: 100%; height: 100%; object-fit: cover;
-            opacity: 0.9;
-            transition: transform 0.5s, filter 0.5s;
+
+        .mugshot-zone::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1) 1px, transparent 1px, transparent 2px);
+            z-index: 2;
+            pointer-events: none;
         }
-        .suspect-card:hover .mugshot-img { transform: scale(1.1); filter: grayscale(100%) contrast(1.2); }
 
-        .suspect-info { padding: 25px; }
-        .suspect-name { font-size: 1.5rem; margin-bottom: 5px; color: #fff; }
-        .suspect-role { font-family: var(--font-code); color: var(--accent-red); font-size: 0.8rem; display: block; margin-bottom: 15px; letter-spacing: 1px; }
+        .mugshot-img {
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.2) brightness(0.8);
+            transition: filter 0.3s;
+        }
+        
+        .suspect-card:hover .mugshot-img { 
+            filter: grayscale(0%) contrast(1.0) brightness(1); 
+        }
 
-        /* =========================================
-           8. VICTIM REGISTRY SECTION
-           ========================================= */
+        .mugshot-placeholder {
+            font-family: var(--font-code);
+            color: var(--accent-red);
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .suspect-info { padding: 20px; }
+        .suspect-name { font-size: 1.2rem; margin-bottom: 5px; }
+        .suspect-role { 
+            font-family: var(--font-code); 
+            color: var(--accent-red); 
+            font-size: 0.75rem; 
+            display: block; 
+            margin-bottom: 15px; 
+        }
+
+        /* --- SECTION: VICTIM REGISTRY --- */
         .victim-section-header {
-            margin-bottom: 60px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px;
-            display: flex; justify-content: space-between; align-items: flex-end;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
         }
 
         .victim-card {
-            background: var(--bg-element); padding: 25px; border-left: 2px solid #333; min-height: 220px;
-            transition: background 0.3s; position: relative; overflow: hidden;
+            background: var(--bg-element);
+            padding: 20px;
+            border-left: 2px solid #333;
+            min-height: 180px;
+            transition: background 0.3s;
         }
-        .victim-card:hover { background: #1a1a1a; }
+        
+        .victim-card:hover { background: #161616; }
 
         .victim-card.confirmed { border-left-color: var(--accent-red); }
         .victim-card.survivor { border-left-color: var(--accent-gold); }
-        .victim-card.suspected { border-left-color: #444; opacity: 0.8; }
+        .victim-card.suspected { border-left-color: #333; opacity: 0.7; }
 
-        .victim-name { font-size: 1.3rem; margin-bottom: 5px; color: #eee; }
-        .victim-date { font-family: var(--font-code); color: var(--text-muted); font-size: 0.8rem; display: block; margin-bottom: 15px; }
-        .victim-detail { font-size: 0.95rem; color: #ccc; line-height: 1.5; }
+        .victim-name { font-size: 1.1rem; margin-bottom: 5px; }
+        .victim-date { 
+            font-family: var(--font-code); 
+            color: var(--text-muted); 
+            font-size: 0.75rem; 
+            display: block; 
+            margin-bottom: 10px; 
+        }
+        .victim-detail { font-size: 0.85rem; color: #bbb; line-height: 1.5; }
         
         .evidence-tag {
-            margin-top: 20px; padding-top: 15px; border-top: 1px dashed #333;
-            font-family: var(--font-code); font-size: 0.75rem; color: var(--accent-red);
-            display: flex; align-items: center;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px dashed #333;
+            font-family: var(--font-code);
+            font-size: 0.7rem;
+            color: var(--accent-red);
         }
-        .evidence-tag::before { content: '●'; margin-right: 8px; font-size: 0.6rem; }
 
-        /* =========================================
-           9. TERMINAL SECTION
-           ========================================= */
+        /* --- SECTION: FORENSIC TERMINAL --- */
         .terminal-wrapper {
-            background: #000; padding: 100px 0;
-            border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);
-            background-image: radial-gradient(#0a0a0a 1px, transparent 1px); background-size: 20px 20px;
+            background: #000;
+            padding: 80px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .crt-frame {
-            border: 2px solid #333; background: #010501; padding: 30px;
-            max-width: 1000px; margin: 0 auto; position: relative;
-            box-shadow: 0 0 50px rgba(51, 255, 51, 0.05);
-        }
-        
-        .crt-frame::before {
-            content: " "; display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-            z-index: 2; background-size: 100% 2px, 3px 100%; pointer-events: none;
+            border: 1px solid #333;
+            background: #030803;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(51, 255, 51, 0.05);
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .terminal-content {
-            color: var(--text-terminal); font-family: var(--font-code); height: 450px; overflow-y: auto;
-            position: relative; z-index: 5; text-shadow: 0 0 5px rgba(51,255,51,0.5);
+            color: var(--text-terminal);
+            font-family: var(--font-code);
+            min-height: 400px;
+            max-height: 400px;
+            overflow-y: auto;
+            position: relative;
+            z-index: 5;
+            font-size: 0.9rem;
         }
 
         .term-nav {
-            display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 30px;
-            border-bottom: 1px solid rgba(51, 255, 51, 0.3); padding-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(51, 255, 51, 0.3);
+            padding-bottom: 10px;
         }
 
         .term-btn {
-            background: rgba(0, 20, 0, 0.8); border: 1px solid rgba(51, 255, 51, 0.5);
-            color: var(--text-terminal); padding: 8px 20px; cursor: pointer;
-            font-family: var(--font-code); text-transform: uppercase; font-size: 0.9rem;
+            background: transparent;
+            border: 1px solid rgba(51, 255, 51, 0.5);
+            color: var(--text-terminal);
+            padding: 5px 15px;
+            cursor: pointer;
+            font-family: var(--font-code);
+            text-transform: uppercase;
+            font-size: 0.8rem;
             transition: all 0.2s;
         }
-        .term-btn:hover, .term-btn.active { background: var(--text-terminal); color: #000; box-shadow: 0 0 15px var(--text-terminal); }
+        
+        .term-btn:hover, .term-btn.active { 
+            background: rgba(51, 255, 51, 0.2); 
+            color: #fff; 
+        }
 
-        .data-block { margin-bottom: 25px; padding-left: 20px; border-left: 3px solid var(--text-terminal); animation: typeIn 0.3s ease-out; }
-        .data-key { font-weight: bold; opacity: 0.9; margin-right: 10px; }
+        .data-block { 
+            margin-bottom: 20px; 
+            padding-left: 15px; 
+            border-left: 2px solid rgba(51, 255, 51, 0.5); 
+        }
+        
+        .data-key { font-weight: bold; opacity: 0.8; }
 
-        /* =========================================
-           10. DETECTIVE & AUTHOR
-           ========================================= */
-        .section-detective { padding: 120px 0; background: var(--bg-panel); text-align: center; }
-        .narrative-block { max-width: 750px; margin: 0 auto; text-align: left; }
+        /* --- DETECTIVE SECTION --- */
+        .section-detective {
+            padding: 100px 0;
+            background: #080808;
+            text-align: center;
+        }
+        
+        .narrative-block { 
+            max-width: 700px; 
+            margin: 0 auto; 
+            text-align: left; 
+        }
         
         .quote-block {
-            font-family: var(--font-head); font-size: 2rem; color: var(--accent-red);
-            border-left: 5px solid #fff; padding-left: 40px; margin: 60px 0;
-            line-height: 1.3; font-style: italic;
+            font-family: var(--font-head);
+            font-size: 1.5rem;
+            color: var(--accent-red);
+            border-left: 3px solid #fff;
+            padding-left: 20px;
+            margin: 40px 0;
+            line-height: 1.4;
+        }
+
+        /* --- CTA BUTTON --- */
+        .cta-btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--accent-red);
+            border: 1px solid var(--accent-red);
+            padding: 15px 40px;
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 30px;
+            font-size: 1.1rem;
         }
         
-        .cta-btn {
-            display: inline-block; margin-top: 50px; padding: 18px 50px;
-            background: transparent; color: var(--accent-red); border: 2px solid var(--accent-red);
-            font-family: var(--font-head); font-size: 1.2rem; text-transform: uppercase; text-decoration: none;
-            transition: all 0.3s; letter-spacing: 2px;
+        .cta-btn:hover {
+            background: var(--accent-red);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(170, 0, 0, 0.5);
         }
-        .cta-btn:hover { background: var(--accent-red); color: #fff; box-shadow: 0 0 30px rgba(170,0,0,0.4); }
 
+        /* --- HERO BUTTONS --- */
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--text-main);
+            padding: 12px 30px;
+            font-family: var(--font-code);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-red);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .hero-btn:hover::before {
+            left: 0;
+        }
+
+        .hero-btn:hover {
+            color: #fff;
+            border-color: var(--accent-red);
+        }
+
+        .hero-btn.author {
+            border-color: var(--accent-gold);
+        }
+
+        .hero-btn.author::before {
+            background: var(--accent-gold);
+        }
+
+        .hero-btn.author:hover {
+            border-color: var(--accent-gold);
+        }
+
+        .hero-btn.detective {
+            border-color: var(--accent-red);
+        }
+
+        /* --- AUTHOR BIO --- */
         .section-author {
-            padding: 100px 0; background: #000; border-top: 1px solid var(--border-color);
+            background: var(--bg-panel);
+            padding: 80px 0;
+            border-top: 1px solid var(--border-color);
         }
+        
         .author-card {
-            display: flex; gap: 50px; align-items: center; max-width: 950px; margin: 0 auto;
-            background: var(--bg-deep); border: 1px solid var(--border-color); padding: 50px;
+            background: var(--bg-deep);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
         }
-        .author-bio { color: #999; font-size: 1rem; }
 
-        /* =========================================
-           11. GLOSSARY SECTION (NEW)
-           ========================================= */
-        .section-glossary { padding: 100px 0; background: var(--bg-element); }
-        .glossary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .glossary-item { background: var(--bg-panel); padding: 25px; border-left: 1px solid var(--accent-gold); }
-        .gloss-term { font-family: var(--font-head); font-size: 1.2rem; color: #fff; margin-bottom: 10px; display: block; }
-        .gloss-def { font-size: 0.9rem; color: var(--text-muted); }
+        .author-text h3 { color: var(--text-main); margin-bottom: 5px; }
+        .author-role { 
+            font-family: var(--font-code); 
+            color: var(--accent-gold); 
+            font-size: 0.8rem; 
+            display: block; 
+            margin-bottom: 15px; 
+        }
+        .author-bio { font-size: 0.9rem; color: #aaa; }
 
-        /* =========================================
-           12. FOOTER
-           ========================================= */
+        /* --- FOOTER --- */
         footer {
-            background: #000; padding: 80px 0; text-align: center; border-top: 1px solid #222;
+            background: #000;
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid #222;
         }
 
-        /* =========================================
-           13. ANIMATIONS & RESPONSIVE
-           ========================================= */
-        @keyframes kenBurns { from { transform: scale(1); } to { transform: scale(1.1); } }
-        @keyframes glitch-anim {
-            0% { clip: rect(20px, 9999px, 15px, 0); }
-            20% { clip: rect(50px, 9999px, 60px, 0); }
-            40% { clip: rect(10px, 9999px, 80px, 0); }
-            60% { clip: rect(30px, 9999px, 10px, 0); }
-            80% { clip: rect(70px, 9999px, 20px, 0); }
-            100% { clip: rect(40px, 9999px, 50px, 0); }
-        }
-        @keyframes glitch-anim2 {
-            0% { clip: rect(10px, 9999px, 80px, 0); }
-            20% { clip: rect(30px, 9999px, 10px, 0); }
-            40% { clip: rect(70px, 9999px, 20px, 0); }
-            60% { clip: rect(20px, 9999px, 15px, 0); }
-            80% { clip: rect(50px, 9999px, 60px, 0); }
-            100% { clip: rect(30px, 9999px, 10px, 0); }
-        }
-        @keyframes typeIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
-
+        /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
             .hero-title { font-size: 3.5rem; }
-            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: 3rem; }
-            .timeline-event, .timeline-event:nth-child(even) { grid-template-columns: 1fr; text-align: left; direction: ltr; }
-            .timeline-date, .timeline-event:nth-child(even) .timeline-date { text-align: left; }
-            .timeline-content, .timeline-event:nth-child(even) .timeline-content { margin-left: 20px; }
-            .timeline-content::after, .timeline-event:nth-child(even) .timeline-content::after { left: -52px; right: auto; }
-            .timeline-line { left: 10px; }
-            .author-card { flex-direction: column; text-align: center; }
-            .nav-inner { flex-direction: column; height: auto; padding: 20px 0; }
-            .nav-links { flex-wrap: wrap; justify-content: center; gap: 15px; }
+            .hero-sub { font-size: 0.9rem; letter-spacing: 0.1em; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: 2rem; }
+            .timeline-line { left: 20px; }
+            .timeline-event, .timeline-event:nth-child(even) { 
+                grid-template-columns: 1fr; 
+                gap: 10px; 
+                margin-bottom: 40px; 
+                direction: ltr;
+            }
+            .timeline-date, .timeline-event:nth-child(even) .timeline-date { 
+                text-align: left; 
+                padding-left: 45px; 
+            }
+            .timeline-content, .timeline-event:nth-child(even) .timeline-content { 
+                margin-left: 45px; 
+                text-align: left; 
+            }
+            .timeline-content::after, .timeline-event:nth-child(even) .timeline-content::after { 
+                left: -50px; 
+                right: auto; 
+            }
+            .nav-inner { flex-direction: column; height: auto; padding: 15px 0; }
+            .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; }
+            .section-padding { padding: 60px 0; }
+            .hero-buttons { 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 15px; 
+            }
+            .hero-btn { 
+                width: 80%; 
+                max-width: 300px; 
+                text-align: center; 
+            }
         }
     </style>
 </head>
@@ -463,14 +651,23 @@
 
     <header>
         <div class="hero-bg">
-            <img src="galleries/cover.jpg" alt="Background" class="hero-img">
+            <!-- Background image will be loaded here if available -->
         </div>
         <div class="hero-overlay"></div>
         <div class="container hero-content">
-            <div class="author-tag text-mono text-muted">Dr. Stephen Dietrich-Kolokouris Presents</div>
-            <h1 class="hero-title">CHICAGO<br><span class="text-highlight glitch-text" data-text="RIPPER CREW">RIPPER CREW</span></h1>
+            <div class="author-tag text-mono text-muted" style="margin-bottom: 20px;">Dr. Stephen Dietrich-Kolokouris Presents</div>
+            <h1 class="hero-title">CHICAGO<br><span class="text-highlight">RIPPER CREW</span></h1>
             <div class="hero-sub">REBOOT: THE SURGEON'S CUT</div>
-            <p class="text-mono text-muted" style="font-size: 0.9rem;">CASE FILE 1981-1982 // STATUS: CLOSED // 17 SUSPECTED VICTIMS</p>
+            <p class="text-mono text-muted" style="font-size: 0.8rem;">CASE FILE 1981-1982 // STATUS: CLOSED // 17 SUSPECTED VICTIMS</p>
+            
+            <div class="hero-buttons">
+                <a href="#detective" class="hero-btn detective">
+                    <span style="color: var(--accent-red);">►</span> Detective Novak
+                </a>
+                <a href="#author" class="hero-btn author">
+                    <span style="color: var(--accent-gold);">►</span> The Author
+                </a>
+            </div>
         </div>
     </header>
 
@@ -483,7 +680,6 @@
                 <li><a href="#suspects">Suspects</a></li>
                 <li><a href="#victims">The Fallen</a></li>
                 <li><a href="#terminal">Forensics</a></li>
-                <li><a href="#glossary">Glossary</a></li>
             </ul>
         </div>
     </nav>
@@ -493,22 +689,22 @@
             <div class="grid-2">
                 <div>
                     <h2>The City That Bleeds</h2>
-                    <p class="text-muted" style="font-size: 1.15rem;">
+                    <p class="text-muted" style="margin-bottom: 20px; font-size: 1.1rem;">
                         In the underbelly of Chicago, where neon bleeds into shadow and the city's pulse thumps with 700 murders a year, the Chicago Ripper Crew carved a scar that still festers. From 1981 to 1982, <strong>Robin Gecht</strong>, <strong>Edward Spreitzer</strong>, <strong>Andrew Kokoraleis</strong>, and <strong>Thomas Kokoraleis</strong> hunted.
                     </p>
                     <p class="text-muted">
                         Their red Dodge van became a specter; their attic "chapel" on North Natchez Avenue, a slaughterhouse of wire, knives, and axes. They left a trail of blood—<strong>Linda Sutton, Lorraine Borowski, Shui Mak, Sandra Delaware, Rose Beck Davis, Angel York, Beverly Washington, Rafael Tirado, Alberto Rosario</strong>—women and men broken by sadistic hunger.
                     </p>
                     <br>
-                    <div style="border-left: 4px solid var(--accent-red); padding-left: 30px;">
+                    <div style="border-left: 3px solid var(--accent-red); padding-left: 20px;">
                         <h4 class="text-highlight">THE NOVAK NARRATIVE</h4>
-                        <p class="text-mono text-muted" style="font-size: 0.9rem;">
+                        <p class="text-mono text-muted" style="font-size: 0.85rem;">
                             Through the eyes of Detective Sarah Novak, forged by her sister Jenny's 1972 murder, "Reboot" excavates the horror. While the 1980s media screamed "Satanic Panic," Novak chased the physical evidence: attic dust, piano wire patterns, and the cracks in the crew's loyalty.
                         </p>
                     </div>
                 </div>
                 <div class="premise-card">
-                    <h3 class="text-mono text-highlight" style="margin-bottom: 30px;">CASE STATISTICS</h3>
+                    <h3 class="text-mono text-highlight">CASE STATISTICS</h3>
                     <div class="stat-grid">
                         <div class="stat-box">
                             <div class="stat-num">17</div>
@@ -527,11 +723,10 @@
                             <div class="stat-label">MONTHS ACTIVE</div>
                         </div>
                     </div>
-                    <div style="margin-top: 40px; font-family: var(--font-code); font-size: 0.85rem; color: #666; border-top: 1px dashed #333; padding-top: 25px;">
+                    <div style="margin-top: 30px; font-family: var(--font-code); font-size: 0.8rem; color: #666; border-top: 1px dashed #333; padding-top: 20px;">
                         <p>> PRIMARY LOCATION: 2720 N. NATCHEZ AVE</p>
                         <p>> VEHICLE: 1978 DODGE TRADESMAN (RED)</p>
                         <p>> SIGNATURE: BREAST AMPUTATION (WIRE/AX)</p>
-                        <p>> STATUS: ALL SUSPECTS CUSTODY (OCT 1982)</p>
                     </div>
                 </div>
             </div>
@@ -540,9 +735,7 @@
 
     <section id="timeline" class="section-padding" style="background: #080808;">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 20px;">Timeline of Terror</h2>
-            <p class="text-center text-mono text-muted" style="margin-bottom: 80px;">THE CHRONOLOGY OF VIOLENCE (1981 - 1982)</p>
-            
+            <h2 style="text-align: center; margin-bottom: 60px;">Timeline of Terror (1981-1982)</h2>
             <div class="timeline-container">
                 <div class="timeline-line"></div>
 
@@ -550,7 +743,7 @@
                     <div class="timeline-date">MAY 23, 1981</div>
                     <div class="timeline-content">
                         <h4>The First Vanishing</h4>
-                        <p class="text-muted">Linda Sutton (28) abducted from Division Street. This marked the crew's first confirmed kill. Her body was found ten days later in a vacant lot near the Chicago River.</p>
+                        <p class="text-muted">Linda Sutton (28) abducted from Division Street. This marked the crew's first confirmed kill. Found in a vacant lot near the Chicago River.</p>
                         <div class="badge fatal">FATALITY</div>
                     </div>
                 </div>
@@ -559,7 +752,7 @@
                     <div class="timeline-date">APRIL 1982</div>
                     <div class="timeline-content">
                         <h4>The Escalation</h4>
-                        <p class="text-muted">Unreported assaults on victims "Jane" and "Mary". The crew begins using the attic "Chapel" for ritualistic abuse. "Mary" is presumed dead, though no body is recovered.</p>
+                        <p class="text-muted">Unreported assaults on victims "Jane" and "Mary". The crew begins using the attic "Chapel". "Mary" is presumed dead; no body recovered.</p>
                         <div class="badge unknown">UNCONFIRMED</div>
                     </div>
                 </div>
@@ -568,7 +761,7 @@
                     <div class="timeline-date">MAY 15, 1982</div>
                     <div class="timeline-content">
                         <h4>Suburban Shock</h4>
-                        <p class="text-muted">Lorraine Borowski (21) abducted in Elmhurst outside Remax Realty. Her spilled coffee thermos was the only trace left behind. Found months later off Route 83.</p>
+                        <p class="text-muted">Lorraine Borowski (21) abducted in Elmhurst outside Remax Realty. Her spilled coffee thermos was the only trace.</p>
                         <div class="badge fatal">FATALITY</div>
                     </div>
                 </div>
@@ -577,7 +770,7 @@
                     <div class="timeline-date">JUNE 13, 1982</div>
                     <div class="timeline-content">
                         <h4>Chinatown Silence</h4>
-                        <p class="text-muted">Shui Mak (30) vanishes after closing her family's diner. Taken to the attic. Mutilated with piano wire. Dumped near South Wentworth.</p>
+                        <p class="text-muted">Shui Mak (30) vanishes after closing her family's diner. Taken to the attic. Mutilated with piano wire.</p>
                         <div class="badge fatal">FATALITY</div>
                     </div>
                 </div>
@@ -586,7 +779,7 @@
                     <div class="timeline-date">SEPT 9, 1982</div>
                     <div class="timeline-content">
                         <h4>The Ax Murder</h4>
-                        <p class="text-muted">Rose Beck Davis (30) abducted in Lincoln Park. In a deviation from the wire, Gecht uses a rusted ax found in the attic to shatter her chest.</p>
+                        <p class="text-muted">Rose Beck Davis (30) abducted in Lincoln Park. Gecht uses a rusted ax found in the attic to kill her.</p>
                         <div class="badge fatal">FATALITY</div>
                     </div>
                 </div>
@@ -595,7 +788,7 @@
                     <div class="timeline-date">OCT 6, 1982</div>
                     <div class="timeline-content">
                         <h4>The Drive-By</h4>
-                        <p class="text-muted">Rafael Tirado (28) killed and Alberto Rosario (24) injured in a drive-by shooting. A "side hustle" hit for the Latin Kings using the crew's van.</p>
+                        <p class="text-muted">Rafael Tirado (28) killed and Alberto Rosario (24) injured. A "side hustle" hit for the Latin Kings.</p>
                         <div class="badge fatal">FATALITY</div> <div class="badge survivor">SURVIVOR</div>
                     </div>
                 </div>
@@ -604,7 +797,7 @@
                     <div class="timeline-date">OCT 8, 1982</div>
                     <div class="timeline-content">
                         <h4>The Break</h4>
-                        <p class="text-muted">Beverly Washington (20) abducted. Mutilated but spared by Thomas Kokoraleis in a moment of mercy. Found near railroad tracks. She provides the key description.</p>
+                        <p class="text-muted">Beverly Washington (20) abducted. Mutilated but spared by Thomas Kokoraleis. Found near railroad tracks.</p>
                         <div class="badge survivor">KEY WITNESS</div>
                     </div>
                 </div>
@@ -613,7 +806,7 @@
                     <div class="timeline-date">OCT 20, 1982</div>
                     <div class="timeline-content">
                         <h4>The Raid</h4>
-                        <p class="text-muted">Detective Novak leads the raid on 2720 North Natchez. Gecht arrested. The "Chapel" is exposed. The net closes.</p>
+                        <p class="text-muted">Detective Novak leads the raid on 2720 North Natchez. Gecht arrested. The "Chapel" is exposed.</p>
                         <div class="badge fatal">ARREST</div>
                     </div>
                 </div>
@@ -624,17 +817,17 @@
 
     <section id="suspects" class="section-padding">
         <div class="container">
-            <h2 style="margin-bottom: 60px;">The Crew Profiles</h2>
+            <h2 style="margin-bottom: 40px;">The Crew Profiles</h2>
             <div class="grid-4">
                 
                 <div class="suspect-card">
                     <div class="mugshot-zone">
-                        <img src="galleries/gecht.jpg" alt="Robin Gecht" class="mugshot-img">
+                        <div class="mugshot-placeholder">[IMG_GECHT.RAW]<br>EVIDENCE PHOTO</div>
                     </div>
                     <div class="suspect-info">
                         <div class="suspect-name">Robin Gecht</div>
                         <span class="suspect-role">The Mastermind</span>
-                        <p class="text-muted text-mono" style="font-size: 0.85rem;">
+                        <p class="text-muted text-mono" style="font-size: 0.8rem;">
                             Age: 28<br>
                             Role: Leader / Director<br>
                             Fetish: Blood, Domination<br>
@@ -645,12 +838,12 @@
 
                 <div class="suspect-card">
                     <div class="mugshot-zone">
-                        <img src="galleries/spreitzer.jpg" alt="Edward Spreitzer" class="mugshot-img">
+                        <div class="mugshot-placeholder">[IMG_SPREITZER.RAW]<br>EVIDENCE PHOTO</div>
                     </div>
                     <div class="suspect-info">
                         <div class="suspect-name">Edward Spreitzer</div>
                         <span class="suspect-role">The Muscle</span>
-                        <p class="text-muted text-mono" style="font-size: 0.85rem;">
+                        <p class="text-muted text-mono" style="font-size: 0.8rem;">
                             Age: 21<br>
                             Role: Enforcer<br>
                             Weapon: Fists, .38 Revolver<br>
@@ -661,12 +854,12 @@
 
                 <div class="suspect-card">
                     <div class="mugshot-zone">
-                        <img src="galleries/andrew.jpg" alt="Andrew Kokoraleis" class="mugshot-img">
+                        <div class="mugshot-placeholder">[IMG_KOKO_A.RAW]<br>EVIDENCE PHOTO</div>
                     </div>
                     <div class="suspect-info">
                         <div class="suspect-name">Andrew Kokoraleis</div>
                         <span class="suspect-role">The Chaos</span>
-                        <p class="text-muted text-mono" style="font-size: 0.85rem;">
+                        <p class="text-muted text-mono" style="font-size: 0.8rem;">
                             Age: 19<br>
                             Role: Knife Specialist<br>
                             Traits: Volatile, Sadistic<br>
@@ -677,12 +870,12 @@
 
                 <div class="suspect-card">
                     <div class="mugshot-zone">
-                        <img src="galleries/thomas.jpg" alt="Thomas Kokoraleis" class="mugshot-img">
+                        <div class="mugshot-placeholder">[IMG_KOKO_T.RAW]<br>EVIDENCE PHOTO</div>
                     </div>
                     <div class="suspect-info">
                         <div class="suspect-name">Thomas Kokoraleis</div>
                         <span class="suspect-role">The Weak Link</span>
-                        <p class="text-muted text-mono" style="font-size: 0.85rem;">
+                        <p class="text-muted text-mono" style="font-size: 0.8rem;">
                             Age: 22<br>
                             Role: Reluctant Participant<br>
                             Note: Spared B. Washington<br>
@@ -699,30 +892,30 @@
         <div class="container">
             <div class="victim-section-header">
                 <h2>Victim Registry</h2>
-                <p class="text-mono text-highlight" style="font-size: 1rem;">CONFIRMED: 9 // SUSPECTED: 17+</p>
+                <p class="text-mono text-highlight" style="font-size: 0.9rem;">CONFIRMED: 9 // SUSPECTED: 17+</p>
             </div>
 
-            <h4 class="text-muted" style="margin-bottom: 30px;">I. The Capital Cases (Confirmed Fatalities)</h4>
+            <h4 class="text-muted" style="margin-bottom: 20px;">I. The Capital Cases (Confirmed)</h4>
             <div class="grid-3">
                 <div class="victim-card confirmed">
                     <span class="badge fatal">FATAL</span>
                     <div class="victim-name">Linda Sutton</div>
                     <span class="victim-date">MAY 1981 | WEST SIDE</span>
-                    <p class="victim-detail">Sex worker. First confirmed kill. Mutilated with piano wire. Found in vacant lot near the river.</p>
+                    <p class="victim-detail">Sex worker. First confirmed kill. Mutilated with piano wire. Found in vacant lot.</p>
                     <div class="evidence-tag">EVIDENCE: WIRE MARKS</div>
                 </div>
                 <div class="victim-card confirmed">
                     <span class="badge fatal">FATAL</span>
                     <div class="victim-name">Lorraine Borowski</div>
                     <span class="victim-date">MAY 1982 | ELMHURST</span>
-                    <p class="victim-detail">Secretary. Abducted on way to work. Spilled coffee thermos found at scene. Found in field.</p>
+                    <p class="victim-detail">Secretary. Abducted on way to work. Found months later in a field.</p>
                     <div class="evidence-tag">EVIDENCE: ATTIC DUST</div>
                 </div>
                 <div class="victim-card confirmed">
                     <span class="badge fatal">FATAL</span>
                     <div class="victim-name">Shui Mak</div>
                     <span class="victim-date">JUNE 1982 | CHINATOWN</span>
-                    <p class="victim-detail">Diner worker. Vanished after shift. Taken to Chapel. Mutilated with wire. Dumped near South Wentworth.</p>
+                    <p class="victim-detail">Diner worker. Taken to Chapel. Mutilated with wire. Dumped near South Wentworth.</p>
                     <div class="evidence-tag">EVIDENCE: TROPHIES</div>
                 </div>
                 <div class="victim-card confirmed">
@@ -743,12 +936,12 @@
                     <span class="badge fatal">FATAL</span>
                     <div class="victim-name">Rafael Tirado</div>
                     <span class="victim-date">OCT 1982 | HUMBOLDT PARK</span>
-                    <p class="victim-detail">Mechanic. Killed in drive-by shooting. Collateral damage in "side hustle" hit.</p>
+                    <p class="victim-detail">Mechanic. Killed in drive-by shooting. Collateral damage in "side hustle".</p>
                     <div class="evidence-tag">EVIDENCE: .38 BALLISTICS</div>
                 </div>
             </div>
 
-            <h4 class="text-muted" style="margin: 80px 0 30px 0;">II. The Survivors (Key Witnesses)</h4>
+            <h4 class="text-muted" style="margin: 60px 0 20px 0;">II. The Survivors</h4>
             <div class="grid-3">
                 <div class="victim-card survivor">
                     <span class="badge survivor">SURVIVOR</span>
@@ -773,7 +966,7 @@
                 </div>
             </div>
 
-            <h4 class="text-muted" style="margin: 80px 0 30px 0;">III. The Cold Files (Suspected/Unconfirmed)</h4>
+            <h4 class="text-muted" style="margin: 60px 0 20px 0;">III. Unconfirmed / Suspected</h4>
             <div class="grid-4">
                 <div class="victim-card suspected">
                     <span class="badge unknown">SUSPECTED</span>
@@ -836,47 +1029,13 @@
                     <span id="clock">00:00:00</span>
                 </div>
                 <div class="term-nav">
-                    <button class="term-btn active" onclick="loadData('autopsy')">AUTOPSY_RPT</button>
-                    <button class="term-btn" onclick="loadData('ballistics')">BALLISTICS</button>
-                    <button class="term-btn" onclick="loadData('vehicle')">VEHICLE_LOG</button>
-                    <button class="term-btn" onclick="loadData('geo')">GEO_PROFILE</button>
-                    <button class="term-btn" onclick="loadData('interrogation')">INTERROGATION</button>
-                    <button class="term-btn" onclick="loadData('novak')">NOVAK_NOTES</button>
+                    <button class="term-btn active" data-category="autopsy">AUTOPSY_RPT</button>
+                    <button class="term-btn" data-category="ballistics">BALLISTICS</button>
+                    <button class="term-btn" data-category="vehicle">VEHICLE_LOG</button>
+                    <button class="term-btn" data-category="geo">GEO_PROFILE</button>
+                    <button class="term-btn" data-category="novak">NOVAK_NOTES</button>
                 </div>
-                <div class="terminal-content" id="term-screen">
-                    </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="glossary" class="section-glossary">
-        <div class="container">
-            <h2 style="margin-bottom: 50px;">Case Glossary</h2>
-            <div class="glossary-grid">
-                <div class="glossary-item">
-                    <span class="gloss-term">Chicago Ripper Crew</span>
-                    <p class="gloss-def">A group of four men (Gecht, Spreitzer, A. Kokoraleis, T. Kokoraleis) who committed a series of brutal crimes from 1981-1982, including rape, mutilation, and murder.</p>
-                </div>
-                <div class="glossary-item">
-                    <span class="gloss-term">Natchez Avenue Chapel</span>
-                    <p class="gloss-def">The real attic at 2720 North Natchez Avenue. The crew's ritualistic lair for rapes and murders, described with fictionalized details like pentagrams and flesh trophies.</p>
-                </div>
-                <div class="glossary-item">
-                    <span class="gloss-term">Piano Wire</span>
-                    <p class="gloss-def">A real tool used by the crew for mutilation, particularly breast amputation. Central to Gecht's fetish-driven crimes, documented in autopsies.</p>
-                </div>
-                <div class="glossary-item">
-                    <span class="gloss-term">Satanic Panic</span>
-                    <p class="gloss-def">A real 1980s cultural phenomenon exaggerating satanic elements in crimes, falsely applied to the crew's chapel rituals, which were actually Gecht's fetish-driven theater.</p>
-                </div>
-                <div class="glossary-item">
-                    <span class="gloss-term">Cold Case Unit</span>
-                    <p class="gloss-def">A fictional Chicago PD unit where Detective Sarah Novak works post-trials, pursuing Jenny's 1972 murder and others, symbolizing ongoing justice.</p>
-                </div>
-                <div class="glossary-item">
-                    <span class="gloss-term">Red Van</span>
-                    <p class="gloss-def">The 1978 Dodge Tradesman used by the crew for abductions and the drive-by. A key clue in Beverly Washington's testimony.</p>
-                </div>
+                <div class="terminal-content" id="term-screen"></div>
             </div>
         </div>
     </section>
@@ -893,7 +1052,8 @@
             <p class="text-muted">
                 While the 1980s press focused on Satanic Panic, Novak focused on the dust in the wounds—asbestos that pointed directly to an attic on Natchez Avenue. Her work unified the disparate cases—the ax murder in Lincoln Park, the wire mutilations on the West Side, and the gangland-style shooting in Humboldt Park—proving they were all the work of one crew.
             </p>
-            <div style="text-align: center;">
+            
+            <div style="margin-top: 50px;">
                 <a href="#overview" class="cta-btn">REOPEN CASE FILE</a>
             </div>
         </div>
@@ -904,7 +1064,7 @@
             <div class="author-card">
                 <div class="author-text">
                     <h3>The Archivist</h3>
-                    <span class="text-mono text-highlight" style="display:block; margin-bottom:15px;">Dr. Stephen Dietrich-Kolokouris // Author & Researcher</span>
+                    <span class="author-role">Dr. Stephen Dietrich-Kolokouris // Author & Researcher</span>
                     <p class="author-bio">
                         This digital companion serves as an excavation of the Chicago Ripper Crew case, reimagining the horror through a modern lens. Dr. Dietrich-Kolokouris blends the raw historical truth of the crew's crimes with the narrative pulse of fiction to breathe life into the victims' stories and the relentless fight to stop their killers.
                     </p>
@@ -921,70 +1081,113 @@
     </footer>
 
     <script>
-        // Force scroll to top
-        window.onbeforeunload = function () { window.scrollTo(0, 0); }
-        document.addEventListener("DOMContentLoaded", function() {
-            window.scrollTo(0, 0);
-            document.body.classList.add('loaded');
+        // Forensic Terminal Data
+        const forensicData = {
+            'autopsy': `
+<div class="data-block">
+    <span class="data-key">CASE ID:</span> 81-0523 (SUTTON)<br>
+    <span class="data-key">PATHOLOGY:</span> Perimortem Amputation (Bilateral)<br>
+    <span class="data-key">TOOL MARK:</span> High-tensile wire (Piano/Garrote). Cuts suggest sawing motion.<br>
+    <span class="data-key">TOXICOLOGY:</span> Traces of heroin (Non-lethal).
+</div>
+<div class="data-block">
+    <span class="data-key">CASE ID:</span> 82-0909 (DAVIS)<br>
+    <span class="data-key">PATHOLOGY:</span> Blunt Force Trauma / Severing<br>
+    <span class="data-key">TOOL MARK:</span> Oxidized Ferrous Metal (Rusted Ax).<br>
+    <span class="data-key">TRACE:</span> Candle wax found in wound bed. Attic dust (asbestos/insulation) on clothing.
+</div>
+<div class="data-block">
+    <span class="data-key">CASE ID:</span> 82-0613 (MAK)<br>
+    <span class="data-key">PATHOLOGY:</span> Multiple stab wounds to heart. Wire ligation marks on torso.<br>
+    <span class="data-key">NOTES:</span> DNA from multiple assailants recovered.
+</div>`,
+            
+            'ballistics': `
+<div class="data-block">
+    <span class="data-key">CASE ID:</span> 82-1006 (TIRADO/ROSARIO)<br>
+    <span class="data-key">INCIDENT:</span> Drive-By Shooting<br>
+    <span class="data-key">WEAPON:</span> .38 Caliber Revolver (Stolen)<br>
+    <span class="data-key">BALLISTICS MATCH:</span> Casings recovered at Division St bodega match weapon recovered from Edward Spreitzer upon arrest.<br>
+    <span class="data-key">CONTEXT:</span> 'Side Hustle' hit for Latin Kings. Deviation from ritual MO.
+</div>`,
+
+            'vehicle': `
+<div class="data-block">
+    <span class="data-key">VEHICLE:</span> 1978 Dodge Tradesman Van<br>
+    <span class="data-key">COLOR:</span> Red (Primer spots on quarter panel)<br>
+    <span class="data-key">PLATE:</span> Illinois '7...' (Identified by B. Washington)<br>
+    <span class="data-key">INTERIOR:</span> Rear cabin stripped. Carpet fibers match victim clothing (Borowski, York).<br>
+    <span class="data-key">STATUS:</span> Impounded Oct 1982. Luminol test positive for massive blood volume.
+</div>`,
+
+            'geo': `
+<div class="data-block">
+    <span class="data-key">PRIMARY SITE:</span> 2720 North Natchez Ave (The Chapel)<br>
+    <span class="data-key">TYPE:</span> Residential Walk-Up (Attic)<br>
+    <span class="data-key">EVIDENCE:</span> Mattress heavily stained. Pentagrams etched into rafters. Crate containing flesh trophies found.<br>
+    <span class="data-key">SURVEILLANCE:</span> Neighbors reported chanting, screaming, loud music (Black Sabbath) late at night.
+</div>
+<div class="data-block">
+    <span class="data-key">DUMP SITES:</span> Chicago River, Route 83 (Elmhurst), Roosevelt Rd Alley.<br>
+    <span class="data-key">ABDUCTION ZONES:</span> Division Street (Hookers), Lincoln Park (Rose Davis), Elmhurst (Lorraine Borowski).
+</div>`,
+
+            'novak': `
+<div class="data-block">
+    <span class="data-key">DETECTIVE NOTE:</span> 10/22/82<br>
+    <span class="data-key">ENTRY:</span> "We got them. Gecht is the head of the snake. Thomas broke in interrogation—admitted to the wire, the ax, everything. But the look in Gecht's eyes... he thinks he won. He thinks the fear he planted will outlive him."<br>
+    <span class="data-key">LINK:</span> Jenny Novak Case (1972) - Still Open. Similarities in disposal methods noted.
+</div>`
+        };
+
+        // Terminal Data Loader
+        function loadData(category) {
+            const screen = document.getElementById('term-screen');
+            const btns = document.querySelectorAll('.term-btn');
+            
+            // Update active button
+            btns.forEach(b => b.classList.remove('active'));
+            const activeBtn = document.querySelector(`[data-category="${category}"]`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            // Loading animation
+            screen.innerHTML = '<span style="color:var(--text-terminal)">> DECRYPTING DATA STREAM...</span>';
+            
+            setTimeout(() => {
+                screen.innerHTML = forensicData[category] || '<span style="color:#ff0000;">ERROR: DATA NOT FOUND</span>';
+            }, 400);
+        }
+
+        // Terminal button event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize terminal
+            loadData('autopsy');
+            
+            // Add click handlers
+            document.querySelectorAll('.term-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    loadData(this.getAttribute('data-category'));
+                });
+            });
+
+            // Fade in body
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 100);
         });
 
-        // Clock
+        // Clock Update
         function updateClock() {
             const now = new Date();
-            document.getElementById('clock').innerText = now.toLocaleTimeString('en-US', { hour12: false });
+            const timeString = now.toLocaleTimeString('en-US', { hour12: false });
+            const clockEl = document.getElementById('clock');
+            if (clockEl) clockEl.innerText = timeString;
         }
+        
         setInterval(updateClock, 1000);
         updateClock();
 
-        // Terminal Data
-        const forensicData = {
-            'autopsy': `
-<div class="data-block"><span class="data-key">CASE ID 81-0523 (SUTTON):</span> Perimortem Amputation. High-tensile wire marks (Garrote). Cuts suggest sawing motion. Traces of industrial lubricant found.</div>
-<div class="data-block"><span class="data-key">CASE ID 82-0909 (DAVIS):</span> Blunt Force. Rusted Ax particles found in wound bed. Massive thoracic trauma.</div>
-<div class="data-block"><span class="data-key">CASE ID 82-0613 (MAK):</span> Wire ligation. Multiple assailants confirmed via DNA profiles (3 distinct contributors).</div>
-<div class="data-block"><span class="data-key">CASE ID 82-0828 (DELAWARE):</span> Throat slashed. Breasts severed. Similar signature to Sutton.</div>`,
-            
-            'ballistics': `
-<div class="data-block"><span class="data-key">CASE ID 82-1006 (TIRADO/ROSARIO):</span> Drive-By Shooting Event.</div>
-<div class="data-block"><span class="data-key">WEAPON:</span> .38 Caliber Revolver (Stolen).</div>
-<div class="data-block"><span class="data-key">MATCH:</span> Casings recovered at Division St bodega match weapon recovered from Edward Spreitzer upon arrest.</div>
-<div class="data-block"><span class="data-key">ANALYSIS:</span> Deviation from ritual MO. "Side Hustle" for Latin Kings gang.</div>`,
-
-            'vehicle': `
-<div class="data-block"><span class="data-key">VEHICLE:</span> 1978 Dodge Tradesman Van.</div>
-<div class="data-block"><span class="data-key">COLOR:</span> Red (Primer spots on quarter panel).</div>
-<div class="data-block"><span class="data-key">PLATE:</span> Illinois '7...' (Identified by B. Washington).</div>
-<div class="data-block"><span class="data-key">EVIDENCE:</span> Interior stripped. Luminol positive for massive blood volume. Carpet fibers match victim clothing (Borowski, York).</div>`,
-
-            'geo': `
-<div class="data-block"><span class="data-key">PRIMARY SITE:</span> 2720 North Natchez Ave (Attic Chapel).</div>
-<div class="data-block"><span class="data-key">EVIDENCE:</span> Mattress heavily stained. Pentagrams etched into rafters. Crate containing flesh trophies found.</div>
-<div class="data-block"><span class="data-key">SURVEILLANCE:</span> Neighbors reported chanting, screaming, loud music (Black Sabbath) late at night.</div>
-<div class="data-block"><span class="data-key">DUMP SITES:</span> Chicago River, Route 83 (Elmhurst), Roosevelt Rd Alley.</div>`,
-
-            'interrogation': `
-<div class="data-block"><span class="data-key">SUBJECT:</span> Thomas Kokoraleis</div>
-<div class="data-block"><span class="data-key">STATEMENT:</span> "Robin wanted blood. Always blood. He made us watch. He made us cut."</div>
-<div class="data-block"><span class="data-key">CONFESSION:</span> Admitted to presence at Sutton, Mak, Delaware, and Davis murders. Admitted to sparing Beverly Washington.</div>
-<div class="data-block"><span class="data-key">NOTE:</span> Subject displays extreme guilt. Religious conflict evident.</div>`,
-
-            'novak': `
-<div class="data-block"><span class="data-key">NOTE 10/22/82:</span> "We got them. Gecht is the head of the snake. Thomas broke in interrogation—admitted to the wire, the ax, everything. But the look in Gecht's eyes... he thinks he won. He thinks the fear he planted will outlive him."</div>
-<div class="data-block"><span class="data-key">LINK:</span> Jenny Novak Case (1972) - Still Open. Similarities in disposal methods noted. Priority upgrade requested.</div>`
-        };
-
-        function loadData(type) {
-            const screen = document.getElementById('term-screen');
-            const btns = document.querySelectorAll('.term-btn');
-            btns.forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
-            screen.innerHTML = '<span style="color:var(--text-terminal)">> DECRYPTING STREAM...</span>';
-            setTimeout(() => { screen.innerHTML = forensicData[type]; }, 400);
-        }
-
-        loadData('autopsy');
-
-        // Scroll Animation
+        // Scroll Reveal Animation
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -994,12 +1197,21 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.victim-card, .suspect-card, .premise-card, .timeline-event, .author-card').forEach(el => {
-            el.style.opacity = 0;
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease-out';
-            observer.observe(el);
+        // Apply scroll animations after DOM loads
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.victim-card, .suspect-card, .premise-card, .timeline-event').forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease-out';
+                observer.observe(el);
+            });
         });
+
+        // Smooth scroll to top on page load
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
     </script>
 </body>
 </html>
