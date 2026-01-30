@@ -1,43 +1,37 @@
-const intelligenceFiles = {
-    natchez: {
-        title: "2720 N. NATCHEZ AVE - THE LAIR",
-        desc: "Attic access confirmed. Surveillance reports smell of heavy incense and iron. Attic walls contain ritualistic markings. Gecht's primary residence.",
-        intel: "THREAT LEVEL: EXTREME"
+// intelligence Data Repository
+const forensics = {
+    'Natchez': {
+        title: "2720 N. NATCHEZ AVE - ATTIC LAIR",
+        body: "Entry point confirmed. Forensic analysis of the attic space revealed ritualistic iconography. Gecht's primary base of operations. Clinical precision noted in the environmental setup."
     },
-    division: {
-        title: "DIVISION STREET - THE CARNIVAL",
-        desc: "High-density hunting ground. The red Dodge van has been spotted circling between 11 PM and 3 AM. Low police presence in 1981.",
-        intel: "THREAT LEVEL: HIGH"
-    },
-    elmhurst: {
-        title: "ELMHURST SUBURB - ABDUCTION",
-        desc: "Point of contact for Lorraine Borowski. Suburban safety perimeter breached. No witnesses. One butterfly earring found in the gravel.",
-        intel: "THREAT LEVEL: ELEVATED"
-    },
-    river: {
-        title: "CHICAGO RIVER - DISPOSAL SITE",
-        desc: "Vacant lot near the water. Linda Sutton's body recovered. Post-mortem suggests clinical precision. Sarah Novak on scene.",
-        intel: "THREAT LEVEL: ACTIVE CRIME SCENE"
+    'Division': {
+        title: "DIVISION STREET - HUNTING GROUND",
+        body: "The 'Carnival of Vice.' Surveillance logs from 1981 indicate the red Dodge van frequented this sector between 2300 and 0300 hours. High density of potential contact points."
     }
 };
 
-function updateBrief(locationKey) {
-    const data = intelligenceFiles[locationKey];
-    const title = document.getElementById('loc-title');
-    const desc = document.getElementById('loc-desc');
-    const intel = document.getElementById('loc-intel');
+function updateMap(loc) {
+    const titleEl = document.getElementById('intel-title');
+    const bodyEl = document.getElementById('intel-body');
+    const data = forensics[loc];
 
-    // Add a "typing" effect or fade
-    title.style.opacity = 0;
-    desc.style.opacity = 0;
+    // Reset animations
+    titleEl.style.opacity = 0;
+    bodyEl.style.opacity = 0;
 
     setTimeout(() => {
-        title.innerText = data.title;
-        desc.innerText = data.desc;
-        intel.innerText = data.intel;
-        intel.style.display = 'block';
+        titleEl.innerText = data.title;
+        bodyEl.innerText = data.body;
         
-        title.style.opacity = 1;
-        desc.style.opacity = 1;
+        // Trigger fade in
+        titleEl.style.transition = "opacity 0.5s";
+        bodyEl.style.transition = "opacity 0.8s";
+        titleEl.style.opacity = 1;
+        bodyEl.style.opacity = 1;
     }, 200);
 }
+
+// Ensure the first location is loaded on startup
+window.onload = () => {
+    updateMap('Natchez');
+};
