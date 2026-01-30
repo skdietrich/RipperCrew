@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicago Ripper Crew: Reboot | Dr. Stephen Dietrich-Kolokouris</title>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Oswald:wght@700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="#about">The Pulse</a>
+        <a href="#promo">Trailer</a>
+        <a href="#map-section">Evidence Map</a>
+        <a href="#victims">The Fallen</a>
+        <a href="#preview">Surgeon's Cut</a>
+        <a href="#buy">Order</a>
+    </nav>
+
+    <header>
+        <img src="assets/Chicago_Ripper_Crew_cover_600dpi.jpg" alt="Chicago Ripper Crew Reboot" class="hero-img">
+        <h1 class="glitch">CHICAGO RIPPER CREW</h1>
+        <h2 class="case-file-font">REBOOT</h2>
+    </header>
+
+    <div class="container" id="about">
+        <h2 class="section-title">1981: The City That Bleeds</h2>
+        <div class="content-grid">
+            <div>
+                <p class="case-file-font">"Downtown, the Sears Tower gleamed like a middle finger to the heavens."</p>
+                <p>Spring, 1981. Chicago was a paradox of ambition and decay. Bankers in the Loop ignored the El trains while, just blocks away, the West Side reeked of piss, stale beer, and blood.</p>
+                <p>In this fucking underbelly, 700 murders a year was just a rhythm. This is the clinical excavation of the Ripper Crew's reign—raw and unapologetic.</p>
+            </div>
+            <div class="image-frame">
+                <img src="https://images.unsplash.com/photo-1496011400194-e356c361955f?auto=format&fit=crop&q=80&w=600" alt="Chicago Elevated Train">
+                <p class="caption">EXHIBIT 1: Loop District El Tracks, 1981</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="promo" class="video-section">
+        <div class="container">
+            <h2 class="section-title center-title" style="border:none; text-align:center;">Watch the Excavation</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <p class="case-file-font signal-text">SIGNAL RECEIVED: 2720 NORTH NATCHEZ AVENUE</p>
+        </div>
+    </section>
+
+    <section id="map-section" class="container">
+        <h2 class="section-title">Forensic Map: Path of Terror</h2>
+        <div class="map-wrapper">
+            <div id="crime-map">
+                <div class="map-point" data-loc="natchez" style="top: 25%; left: 30%;"></div>
+                <div class="map-point" data-loc="division" style="top: 45%; left: 55%;"></div>
+                <div class="map-point" data-loc="elmhurst" style="top: 50%; left: 15%;"></div>
+                <div class="map-point" data-loc="river" style="top: 40%; left: 60%;"></div>
+            </div>
+            <div id="location-details" class="card">
+                <h3 id="loc-title">Investigation Brief</h3>
+                <p id="loc-desc" class="case-file-font">Click a blood-red marker to pull the declassified file.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="victims" class="dark-section">
+        <div class="container">
+            <h2 class="section-title">Memorial: Honor Their Light</h2>
+            <div class="evidence-grid">
+                <div class="card"><span class="victim-tag">THE BUTTERFLY</span><h3>Lorraine Borowski</h3><p class="case-file-font">"Dreams of a house of her own... her butterfly collection pinned neatly above her desk."</p></div>
+                <div class="card"><span class="victim-tag">THE STAR</span><h3>Rose Beck Davis</h3><p class="case-file-font">"A marketing executive... aiming for VP by 35, her vision board a roadmap."</p></div>
+                <div class="card"><span class="victim-tag">THE SURVIVOR</span><h3>Beverly Washington</h3><p class="case-file-font">"I told those fuckers I’d live... her boutique dream a fucking lifeline."</p></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container" id="preview">
+        <h2 class="section-title">The Surgeon's Cut</h2>
+        <div class="preview-box">
+            <div class="toggle-container">
+                <button class="toggle-btn active" id="btn-orig" onclick="toggleProse('original')">ORIGINAL</button>
+                <button class="toggle-btn" id="btn-surg" onclick="toggleProse('surgeon')">SURGEON'S CUT</button>
+            </div>
+            <div id="original-text" class="case-file-font">
+                <p>"Detective Sarah Novak stood in the vacant lot near the Chicago River, her boots sinking into the muck, the stench of rot and river water burning her nostrils."</p>
+            </div>
+            <div id="surgeon-text" class="case-file-font" style="display:none; color:var(--neon-red);">
+                <p>"Detective Sarah Novak stood in the muck near the Chicago River, the stench of rot searing her nostrils."</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="buy" class="cta-section">
+        <h2>REFORMATTED. ILLUSTRATED. UNAPOLOGETIC.</h2>
+        <a href="#" class="btn">SECURE YOUR COPY</a>
+    </div>
+
+    <footer>
+        <p class="case-file-font">CHICAGO RIPPER CREW: REBOOT</p>
+        <p>&copy; 2026 Dr. Stephen Dietrich-Kolokouris</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
