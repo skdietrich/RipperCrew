@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chicago Ripper Crew: Reboot | Official Digital Companion</title>
+    <title>Chicago Ripper Crew: Reboot | Official Forensic Archive</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -19,6 +19,7 @@
             --neon-flicker: #ff3333;
             --terminal-green: #33ff33;
             --border-color: #333;
+            --folder-tab: #222;
             --font-head: 'Oswald', sans-serif;
             --font-body: 'Inter', sans-serif;
             --font-code: 'Share Tech Mono', monospace;
@@ -39,14 +40,17 @@
         }
 
         /* --- TYPOGRAPHY & UTILS --- */
-        h1, h2, h3, h4 {
+        h1, h2, h3, h4, h5 {
             font-family: var(--font-head);
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
         .highlight { color: var(--accent-red); }
-        .mono { font-family: var(--font-code); color: var(--text-muted); font-size: 0.9rem; }
+        .mono { font-family: var(--font-code); color: var(--text-muted); font-size: 0.85rem; }
+        .badge-convicted { background: var(--accent-red); color: white; padding: 2px 6px; font-size: 0.7rem; font-family: var(--font-code); }
+        .badge-survivor { background: #d4af37; color: black; padding: 2px 6px; font-size: 0.7rem; font-family: var(--font-code); }
+        .badge-suspected { background: #333; color: #aaa; padding: 2px 6px; font-size: 0.7rem; font-family: var(--font-code); }
         
         .container {
             max-width: 1400px;
@@ -61,20 +65,13 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.9)), url('galleries/Chicago_Ripper_Crew_cover_600dpi.jpg');
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.95)), url('galleries/Chicago_Ripper_Crew_cover_600dpi.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Parallax */
+            background-attachment: fixed;
             position: relative;
             text-align: center;
             border-bottom: 4px solid var(--accent-red);
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle, transparent 20%, var(--bg-dark) 100%);
         }
 
         .hero-content {
@@ -84,9 +81,9 @@
         }
 
         .hero-title {
-            font-size: 6rem;
+            font-size: 5rem;
             font-weight: 700;
-            text-shadow: 0 0 20px black;
+            text-shadow: 0 0 30px black;
             line-height: 1;
             margin-bottom: 10px;
         }
@@ -94,18 +91,21 @@
         .hero-subtitle {
             font-size: 1.5rem;
             font-weight: 300;
-            color: var(--text-muted);
+            color: #fff;
             margin-bottom: 30px;
             letter-spacing: 5px;
+            text-shadow: 0 0 10px var(--accent-red);
         }
 
         .author-tag {
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
             padding: 10px 20px;
             border: 1px solid var(--accent-red);
             font-family: var(--font-code);
             text-transform: uppercase;
             font-size: 0.8rem;
+            margin-bottom: 20px;
+            display: inline-block;
         }
 
         /* --- NAV --- */
@@ -122,15 +122,16 @@
         nav ul {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             list-style: none;
-            gap: 40px;
+            gap: 30px;
         }
 
         nav a {
             color: var(--text-main);
             text-decoration: none;
             font-family: var(--font-head);
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: color 0.3s;
@@ -138,185 +139,155 @@
 
         nav a:hover { color: var(--accent-red); }
 
-        /* --- THE PREMISE (Grid Layout) --- */
+        /* --- THE PREMISE --- */
         .section-premise {
-            padding: 100px 0;
+            padding: 80px 0;
             background: var(--bg-dark);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .premise-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 2fr 1fr;
             gap: 60px;
-            align-items: center;
+            align-items: start;
         }
 
         .premise-text h2 {
-            font-size: 3rem;
-            margin-bottom: 30px;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .premise-stats {
+            background: var(--bg-panel);
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            font-family: var(--font-code);
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 5px;
+        }
+
+        /* --- SUSPECT PROFILES --- */
+        .section-suspects {
+            padding: 80px 0;
+            background: #0a0a0a;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
             border-left: 5px solid var(--accent-red);
             padding-left: 20px;
         }
-
-        .premise-card {
-            background: var(--bg-panel);
-            padding: 40px;
-            border: 1px solid var(--border-color);
-            position: relative;
-        }
         
-        .premise-card::after {
-            content: "ARCHIVE 1981-1982";
-            position: absolute;
-            top: -10px; right: 20px;
-            background: var(--accent-red);
-            padding: 5px 10px;
-            font-size: 0.7rem;
-            font-weight: bold;
-        }
-
-        /* --- SUSPECT PROFILES (Flex/Grid Hybrid) --- */
-        .section-suspects {
-            padding: 100px 0;
-            background: linear-gradient(to bottom, var(--bg-dark), #111);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 4rem;
-            margin-bottom: 80px;
-            color: var(--text-muted);
-            opacity: 0.2;
-        }
+        .section-header h2 { font-size: 3rem; }
+        .section-header p { color: var(--text-muted); font-family: var(--font-code); }
 
         .dossier-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
         .dossier-file {
             background: var(--bg-panel);
-            border-top: 3px solid var(--border-color);
-            transition: transform 0.3s, border-color 0.3s;
-            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s;
             position: relative;
         }
 
-        .dossier-file:hover {
-            transform: translateY(-10px);
-            border-top-color: var(--accent-red);
-        }
+        .dossier-file:hover { transform: translateY(-5px); border-color: var(--accent-red); }
 
         .mugshot-placeholder {
-            height: 250px;
-            background: #1a1a1a;
+            height: 200px;
+            background: #111;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: var(--font-code);
-            color: #333;
             border-bottom: 1px solid var(--border-color);
             position: relative;
+            overflow: hidden;
         }
         
-        .mugshot-placeholder::before {
+        .mugshot-placeholder::after {
             content: '';
             position: absolute;
             top:0; left:0; width:100%; height:100%;
-            background-image: url('galleries/forensic-map-base.jpg'); /* Subtle texture overlay */
+            background: url('galleries/forensic-map-base.jpg');
             background-size: cover;
-            opacity: 0.2;
-            mix-blend-mode: multiply;
+            opacity: 0.15;
+            mix-blend-mode: overlay;
         }
 
-        .dossier-content {
-            padding: 25px;
-        }
+        .dossier-content { padding: 20px; }
+        .dossier-role { color: var(--accent-red); font-family: var(--font-code); font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 10px; }
 
-        .dossier-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-
-        .dossier-role {
-            font-family: var(--font-code);
-            color: var(--accent-red);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        /* --- VICTIM MEMORIAL (Magazine Layout) --- */
+        /* --- VICTIM MEMORIAL (EXPANDED) --- */
         .section-victims {
             padding: 100px 0;
-            background: url('galleries/neon-chicago.jpg') no-repeat center center;
-            background-size: cover;
-            background-attachment: fixed;
-            position: relative;
+            background: #080808;
+            border-top: 1px solid var(--border-color);
         }
 
-        .section-victims::before {
-            content: '';
-            position: absolute;
-            top:0; left:0; width:100%; height:100%;
-            background: rgba(5,5,5,0.9);
+        .victim-group-title {
+            font-family: var(--font-code);
+            color: var(--text-muted);
+            margin: 40px 0 20px 0;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            font-size: 1.2rem;
         }
 
-        .victim-gallery {
-            position: relative;
-            z-index: 2;
+        .victim-grid {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
         }
 
         .victim-card {
-            background: rgba(20, 20, 20, 0.8);
-            backdrop-filter: blur(5px);
-            padding: 30px;
-            border-left: 2px solid var(--text-muted);
-            grid-column: span 4;
-            transition: all 0.3s;
+            background: #121212;
+            padding: 25px;
+            border-left: 3px solid #333;
+            position: relative;
         }
 
-        .victim-card:hover {
-            background: rgba(30, 30, 30, 0.9);
-            border-left-color: var(--accent-red);
+        .victim-card.prosecuted { border-left-color: var(--accent-red); background: linear-gradient(135deg, #121212 0%, #1a0a0a 100%); }
+        .victim-card.survivor { border-left-color: #d4af37; }
+        
+        .victim-card h4 { font-size: 1.4rem; margin-bottom: 5px; }
+        .victim-meta { display: block; font-family: var(--font-code); font-size: 0.75rem; color: #666; margin-bottom: 15px; }
+        
+        .evidence-point {
+            font-size: 0.85rem;
+            color: #bbb;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #333;
         }
 
-        .victim-card.featured {
-            grid-column: span 6;
-            background: rgba(40, 0, 0, 0.4);
-            border: 1px solid var(--accent-blood);
-        }
-
-        .motif-icon {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            display: block;
-            opacity: 0.7;
-        }
-
-        /* --- FORENSIC TERMINAL (Retro UI) --- */
+        /* --- FORENSIC TERMINAL --- */
         .section-terminal {
             background: #000;
             padding: 80px 0;
             font-family: var(--font-code);
             border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
         }
 
         .terminal-interface {
-            background: #051a05;
-            border: 2px solid #333;
+            background: #050a05;
+            border: 1px solid #333;
             padding: 20px;
             max-width: 1000px;
             margin: 0 auto;
-            box-shadow: 0 0 20px rgba(51, 255, 51, 0.1);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.05);
             position: relative;
-            overflow: hidden;
         }
 
         .terminal-header {
@@ -328,91 +299,53 @@
             color: var(--terminal-green);
         }
 
-        .terminal-tabs {
-            display: flex;
-            gap: 5px;
-            margin-bottom: 20px;
-        }
-
+        .terminal-tabs { display: flex; gap: 5px; margin-bottom: 20px; }
         .tab-btn {
             background: transparent;
             border: 1px solid var(--terminal-green);
             color: var(--terminal-green);
-            padding: 10px 20px;
+            padding: 8px 15px;
             cursor: pointer;
             font-family: var(--font-code);
             text-transform: uppercase;
         }
-
-        .tab-btn.active, .tab-btn:hover {
-            background: var(--terminal-green);
-            color: #000;
-        }
+        .tab-btn.active { background: var(--terminal-green); color: #000; }
 
         .terminal-screen {
-            height: 400px;
+            height: 350px;
             overflow-y: auto;
             color: #ccffcc;
             font-size: 0.9rem;
-            position: relative;
         }
-
-        .terminal-screen::-webkit-scrollbar { width: 5px; }
+        .terminal-screen::-webkit-scrollbar { width: 5px; background: #000; }
         .terminal-screen::-webkit-scrollbar-thumb { background: var(--terminal-green); }
 
-        .data-entry {
-            margin-bottom: 20px;
-            border-left: 2px solid rgba(51, 255, 51, 0.3);
-            padding-left: 15px;
-            animation: typeIn 0.5s steps(40, end);
-        }
-
+        .data-entry { margin-bottom: 15px; border-left: 2px solid rgba(51, 255, 51, 0.3); padding-left: 10px; }
         .data-label { color: var(--terminal-green); font-weight: bold; }
-        
-        /* CRT Scanline Effect */
-        .terminal-interface::after {
-            content: " ";
-            display: block;
-            position: absolute;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 2;
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
-        }
 
-        /* --- THE DETECTIVE (Narrative) --- */
+        /* --- DETECTIVE --- */
         .section-detective {
             padding: 100px 0;
-            background: var(--bg-dark);
+            background: #0a0a0a;
             text-align: center;
         }
-
-        .narrative-block {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: left;
-            font-size: 1.1rem;
-            color: #ccc;
-        }
-
+        .narrative-block { max-width: 800px; margin: 0 auto; text-align: left; }
         .quote-block {
             font-family: var(--font-head);
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--accent-red);
             border-left: 4px solid #fff;
-            padding-left: 30px;
+            padding-left: 25px;
             margin: 40px 0;
-            line-height: 1.2;
         }
 
         /* --- FOOTER --- */
         footer {
-            padding: 50px 0;
+            padding: 40px 0;
             background: #000;
             text-align: center;
             font-family: var(--font-code);
-            color: #555;
+            color: #444;
             border-top: 1px solid #222;
         }
 
@@ -422,10 +355,10 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @media (max-width: 900px) {
-            .hero-title { font-size: 3.5rem; }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3rem; }
             .premise-grid { grid-template-columns: 1fr; }
-            .victim-card, .victim-card.featured { grid-column: span 12; }
+            .victim-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -436,16 +369,16 @@
             <div class="author-tag">Dr. Stephen Dietrich-Kolokouris Presents</div>
             <h1 class="hero-title">CHICAGO<br><span class="highlight">RIPPER CREW</span></h1>
             <h2 class="hero-subtitle">REBOOT</h2>
-            <p class="mono">CASE FILE: 1981-1982 // THE NET CLOSES</p>
+            <p class="mono">ARCHIVE FILE: 1981-1982 // THE COMPLETE RECORD</p>
         </div>
     </header>
 
     <nav>
         <ul>
-            <li><a href="#premise">The Case</a></li>
-            <li><a href="#suspects">Suspects</a></li>
-            <li><a href="#victims">The Fallen</a></li>
-            <li><a href="#evidence">Forensic Terminal</a></li>
+            <li><a href="#premise">The Premise</a></li>
+            <li><a href="#suspects">The Crew</a></li>
+            <li><a href="#victims">Victim Registry</a></li>
+            <li><a href="#evidence">Forensic Data</a></li>
             <li><a href="#detective">Novak's Hunt</a></li>
         </ul>
     </nav>
@@ -455,86 +388,205 @@
             <div class="premise-text">
                 <h2>The City That Bleeds</h2>
                 <p style="margin-bottom: 20px;">
-                    In the underbelly of Chicago, where neon bleeds into shadow and the city's pulse thumps with 700 murders a year, the Ripper Crew carved a scar that still festers. 
-                    From 1981 to 1982, Robin Gecht and his disciples turned a red Dodge van into a specter and an attic on North Natchez Avenue into a slaughterhouse.
+                    In the underbelly of Chicago, where neon bleeds into shadow and the city's pulse thumps with 700 murders a year, the Chicago Ripper Crew carved a scar that still festers. 
+                    [cite_start]From 1981 to 1982, Robin Gecht and his disciples turned a red Dodge van into a specter and an attic on North Natchez Avenue into a slaughterhouse[cite: 77, 78].
                 </p>
                 <p>
-                    <em class="highlight">Chicago Ripper Crew: Reboot</em> is not just a retelling. It is an excavation. 
-                    Through the eyes of the fictional Detective Sarah Novak—forged by her sister Jenny's 1972 murder—we re-enter a city paralyzed by the Satanic Panic, 
-                    chasing monsters who hid behind handyman facades and broken systems.
+                    <strong class="highlight">"Reboot"</strong> is an excavation. Through the eyes of Detective Sarah Novak, we re-enter a city paralyzed by the Satanic Panic. 
+                    [cite_start]While the press screamed about cults, Gecht's crew was operating a "chapel" of wire, knives, and axes—a place where at least 17 suspected victims met their fate, though only a fraction would see justice in court[cite: 79, 84].
                 </p>
             </div>
-            <div class="premise-card">
-                <h3 class="mono">LOCATION DATA</h3>
-                <br>
-                <p><strong>Primary Site:</strong> 2720 North Natchez Avenue (The Chapel)</p>
-                <p><strong>Hunting Grounds:</strong> Division Street, Lincoln Park, Elmhurst</p>
-                <p><strong>Vehicle:</strong> Red Dodge Van (Partial Plate '7')</p>
-                <br>
-                <p class="mono" style="color:var(--accent-red)">STATUS: CONVICTED / CLOSED 1983</p>
+            <div class="premise-stats">
+                <h3 class="mono" style="color:var(--accent-red); margin-bottom: 20px;">CASE STATISTICS</h3>
+                <div class="stat-row">
+                    <span>OPERATIONAL PERIOD</span>
+                    <span>1981 - 1982</span>
+                </div>
+                <div class="stat-row">
+                    <span>SUSPECTED VICTIMS</span>
+                    <span>17+ (Estimates)</span>
+                </div>
+                <div class="stat-row">
+                    <span>CONFIRMED VICTIMS (PDF)</span>
+                    <span>9 Named</span>
+                </div>
+                <div class="stat-row">
+                    <span>LOCATION</span>
+                    <span>West Side / Elmhurst</span>
+                </div>
+                <div class="stat-row">
+                    <span>KEY EVIDENCE</span>
+                    <span>Piano Wire, Ax, Van</span>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="suspects" class="section-suspects">
         <div class="container">
-            <h2 class="section-title">THE CREW</h2>
+            <div class="section-header">
+                <h2>Suspect Profiles</h2>
+                <p>STATUS: ALL IN CUSTODY (OCT 1982)</p>
+            </div>
             <div class="dossier-grid">
                 
                 <div class="dossier-file">
-                    <div class="mugshot-placeholder">
-                        <img src="galleries/forensic-map-base.jpg" alt="Map Overlay" style="position: absolute; width:100%; height:100%; object-fit: cover; opacity: 0.1;">
-                        <span>IMG_EVID_001.RAW</span>
-                    </div>
+                    <div class="mugshot-placeholder"><span>IMG_GECHT.RAW</span></div>
                     <div class="dossier-content">
                         <h3>Robin Gecht</h3>
-                        <span class="dossier-role">The Mastermind // Age: 27</span>
-                        <p>A wiry handyman with a magnetic, depraved charisma. Formerly employed by John Wayne Gacy (hauling dirt from the crawlspace), Gecht channeled his fetishes for blood and domination into a ritualistic cult of his own making.</p>
-                        <br>
-                        <p class="mono"><strong>MO:</strong> Piano wire mutilation, sexual sadism.</p>
+                        <span class="dossier-role">The Mastermind // Age: 28</span>
+                        <p>A wiry handyman with a magnetic, depraved charisma. Formerly worked for John Wayne Gacy. [cite_start]He built the "Chapel" in his attic to perform ritualistic mutilations[cite: 78, 130].</p>
+                        <p class="mono" style="margin-top:10px;">SENTENCE: LIFE W/O PAROLE</p>
                     </div>
                 </div>
 
                 <div class="dossier-file">
-                    <div class="mugshot-placeholder">
-                        <span>IMG_EVID_002.RAW</span>
-                    </div>
+                    <div class="mugshot-placeholder"><span>IMG_SPREITZER.RAW</span></div>
                     <div class="dossier-content">
                         <h3>Edward Spreitzer</h3>
-                        <span class="dossier-role">The Muscle // Age: 20</span>
-                        <p>A hulking, dim-witted laborer seeking approval. Described as Gecht's "loyal dog," his physical strength was weaponized to subdue victims in the van. His virginity and social awkwardness were exploited by Gecht to fuel rage.</p>
-                        <br>
-                        <p class="mono"><strong>Weapon:</strong> Brute force, .38 Revolver (Drive-by).</p>
+                        <span class="dossier-role">The Muscle // Age: 21</span>
+                        <p>A hulking, dim-witted laborer described as Gecht's "loyal dog." Used brute force to subdue victims in the van. [cite_start]Admitted to participating in rapes and murders[cite: 78, 417].</p>
+                        <p class="mono" style="margin-top:10px;">SENTENCE: LIFE W/O PAROLE</p>
                     </div>
                 </div>
 
                 <div class="dossier-file">
-                    <div class="mugshot-placeholder">
-                        <span>IMG_EVID_003.RAW</span>
-                    </div>
+                    <div class="mugshot-placeholder"><span>IMG_KOKORALEIS_A.RAW</span></div>
                     <div class="dossier-content">
                         <h3>Andrew Kokoraleis</h3>
-                        <span class="dossier-role">The Chaos // Age: 18</span>
-                        <p>Volatile and acne-scarred, Andrew thrived on the adrenaline of the kill. Unlike his brother, he showed no remorse, treating the torture as sport. His knife work was described as frenzied and chaotic.</p>
-                        <br>
-                        <p class="mono"><strong>Status:</strong> Executed (1999).</p>
+                        <span class="dossier-role">The Chaos // Age: 19</span>
+                        <p>Volatile and acne-scarred. Thrived on the adrenaline of the kill. Known for using a knife with frenzied enthusiasm. [cite_start]He showed no remorse during the trials[cite: 78, 1192].</p>
+                        <p class="mono" style="margin-top:10px;">SENTENCE: DEATH (EXEC 1999)</p>
                     </div>
                 </div>
 
                 <div class="dossier-file">
-                    <div class="mugshot-placeholder">
-                        <span>IMG_EVID_004.RAW</span>
-                    </div>
+                    <div class="mugshot-placeholder"><span>IMG_KOKORALEIS_T.RAW</span></div>
                     <div class="dossier-content">
                         <h3>Thomas Kokoraleis</h3>
-                        <span class="dossier-role">The Weak Link // Age: 20</span>
-                        <p>Torn between Gecht's influence and his Greek Orthodox guilt. He wore a cross necklace during assaults. His moment of mercy—cutting the ropes for Beverly Washington—eventually cracked the case wide open.</p>
-                        <br>
-                        <p class="mono"><strong>Key Evidence:</strong> Confession, Survivor Release.</p>
+                        <span class="dossier-role">The Weak Link // Age: 22</span>
+                        <p>Torn by religious guilt. He famously spared Beverly Washington's life in a moment of mercy, leading to the crew's capture. [cite_start]He provided the key confession[cite: 78, 1823].</p>
+                        <p class="mono" style="margin-top:10px;">SENTENCE: LIFE (PAROLED 2019)</p>
                     </div>
                 </div>
 
             </div>
+        </div>
+    </section>
+
+    <section id="victims" class="section-victims">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: #fff;">The Victim Registry</h2>
+                <p>TOTAL COUNT: 17 SUSPECTED // 7 CONFIRMED MURDERS IN TEXT</p>
+            </div>
+
+            <div class="victim-group-title">THE CAPITAL CASES (CONVICTIONS SECURED)</div>
+            <div class="victim-grid">
+
+                <div class="victim-card prosecuted">
+                    <span class="badge-convicted">CONFIRMED KILL</span>
+                    <h4>Linda Sutton</h4>
+                    <span class="victim-meta">AGE: 28 | MAY 1981 | WEST SIDE</span>
+                    <p>The first confirmed kill. Abducted from Division Street. Found in a vacant lot near the Chicago River. [cite_start]Mutilated with wire-like tools perimortem[cite: 184, 205].</p>
+                    <div class="evidence-point">EVIDENCE: Piano wire marks matching Gecht's signature.</div>
+                </div>
+
+                <div class="victim-card prosecuted">
+                    <span class="badge-convicted">CONFIRMED KILL</span>
+                    <h4>Lorraine Borowski</h4>
+                    <span class="victim-meta">AGE: 21 | MAY 1982 | ELMHURST</span>
+                    <p>Abducted on her way to work at Remax Realty. Her spilled coffee thermos was the only trace left behind. [cite_start]Found months later in a field off Route 83[cite: 648, 706].</p>
+                    <div class="evidence-point">EVIDENCE: Attic dust and fibers found on remains.</div>
+                </div>
+
+                <div class="victim-card prosecuted">
+                    <span class="badge-convicted">CONFIRMED KILL</span>
+                    <h4>Shui Mak</h4>
+                    <span class="victim-meta">AGE: 30 | JUNE 1982 | CHINATOWN</span>
+                    <p>Vanished after closing her family's diner. Taken to the Natchez attic. Gecht used piano wire to mutilate her before ending her life. [cite_start]Dumped near South Wentworth[cite: 854, 882].</p>
+                    <div class="evidence-point">EVIDENCE: Flesh trophies found in the 'Chapel'.</div>
+                </div>
+
+                <div class="victim-card prosecuted">
+                    <span class="badge-convicted">CONFIRMED KILL</span>
+                    <h4>Sandra Delaware</h4>
+                    <span class="victim-meta">AGE: 26 | AUG 1982 | WEST SIDE</span>
+                    <p>Bartender at the Blue Moon. Abducted while walking home. Breasts severed with wire. Her throat was slashed. [cite_start]Found in an alley off Roosevelt Road[cite: 883, 898].</p>
+                    <div class="evidence-point">EVIDENCE: DNA match to crew members.</div>
+                </div>
+
+                <div class="victim-card prosecuted">
+                    <span class="badge-convicted">CONFIRMED KILL</span>
+                    <h4>Rose Beck Davis</h4>
+                    <span class="victim-meta">AGE: 30 | SEPT 1982 | LINCOLN PARK</span>
+                    <p>Marketing executive. Abducted near her apartment. [cite_start]In a deviation from the wire, Gecht used a rusted ax found in the attic to shatter her chest[cite: 1346, 1396].</p>
+                    <div class="evidence-point">EVIDENCE: Rusted ax recovered in raid match wounds.</div>
+                </div>
+
+                <div class="victim-card prosecuted">
+                    <span class="badge-convicted">CONFIRMED KILL</span>
+                    <h4>Rafael Tirado</h4>
+                    <span class="victim-meta">AGE: 28 | OCT 1982 | HUMBOLDT PARK</span>
+                    <p>Killed in a drive-by shooting outside a bodega. [cite_start]A "side hustle" hit for the Latin Kings, proving the crew was evolving into reckless chaos[cite: 1528].</p>
+                    <div class="evidence-point">EVIDENCE: Ballistics match .38 Revolver found on Spreitzer.</div>
+                </div>
+
+            </div>
+
+            <div class="victim-group-title">THE SURVIVORS (KEY TESTIMONY)</div>
+            <div class="victim-grid">
+
+                <div class="victim-card survivor">
+                    <span class="badge-survivor">SURVIVOR</span>
+                    <h4>Beverly Washington</h4>
+                    <span class="victim-meta">AGE: 20 | OCT 1982 | DIVISION ST</span>
+                    <p>The key witness. Abducted, mutilated with wire, but spared by Thomas. [cite_start]She identified the van, the attic, and the "skinny prick" leader[cite: 1757, 1852].</p>
+                    <div class="evidence-point">CRITICAL CLUE: Partial Plate '7' & Attic Description.</div>
+                </div>
+
+                <div class="victim-card survivor">
+                    <span class="badge-survivor">SURVIVOR</span>
+                    <h4>Angel York</h4>
+                    <span class="victim-meta">AGE: 23 | JUNE 1982 | WEST SIDE</span>
+                    <p>Abducted and mutilated in the van. Survived to describe the wire and the four men. [cite_start]Her testimony was initially dismissed by police[cite: 910, 942].</p>
+                </div>
+
+                <div class="victim-card survivor">
+                    <span class="badge-survivor">SURVIVOR</span>
+                    <h4>Alberto Rosario</h4>
+                    <span class="victim-meta">AGE: 24 | OCT 1982 | HUMBOLDT PARK</span>
+                    <p>Survived the drive-by shooting that killed Rafael Tirado. [cite_start]His description of the "red van" linked the gang hit to the Ripper murders[cite: 1531].</p>
+                </div>
+
+            </div>
+
+            <div class="victim-group-title">THE COLD FILES (SUSPECTED / UNCHARGED)</div>
+            <div class="victim-grid">
+
+                <div class="victim-card">
+                    <span class="badge-suspected">UNCONFIRMED</span>
+                    <h4>"Jane"</h4>
+                    <span class="victim-meta">APRIL 1981 | KEDZIE AVE</span>
+                    <p>An early "practice" abduction. Assaulted in the van but released alive. [cite_start]Police filed it as a "hooker complaint" and never linked it[cite: 538].</p>
+                </div>
+
+                <div class="victim-card">
+                    <span class="badge-suspected">PRESUMED DEAD</span>
+                    <h4>"Mary"</h4>
+                    <span class="victim-meta">MAY 1981 | DIVISION ST</span>
+                    <p>A drifter snatched near Division Street. [cite_start]Confessions suggest she died in the chapel, but no body was ever recovered[cite: 561].</p>
+                </div>
+
+                <div class="victim-card">
+                    <span class="badge-suspected">UNCONFIRMED</span>
+                    <h4>"Tammy"</h4>
+                    <span class="victim-meta">APRIL 1981 | NORTHWEST SIDE</span>
+                    <p>Subjected to a "mock ritual" in the chapel. Released with threats to keep quiet. [cite_start]She fled the city immediately after[cite: 513].</p>
+                </div>
+
+            </div>
+
         </div>
     </section>
 
@@ -542,88 +594,32 @@
         <div class="container">
             <div class="terminal-interface">
                 <div class="terminal-header">
-                    <span>CPD AREA 4 DATABASE // V.2.1</span>
+                    <span>FORENSIC TERMINAL // CASE #81-82</span>
                     <span id="clock">00:00:00</span>
                 </div>
-                
                 <div class="terminal-tabs">
-                    <button class="tab-btn active" onclick="loadData('autopsy')">AUTOPSY_RPT</button>
-                    <button class="tab-btn" onclick="loadData('locations')">GEO_LOC</button>
-                    <button class="tab-btn" onclick="loadData('survivor')">WITNESS_STMT</button>
+                    <button class="tab-btn active" onclick="loadData('weapons')">WEAPONS</button>
+                    <button class="tab-btn" onclick="loadData('vehicle')">VEHICLE_DATA</button>
+                    <button class="tab-btn" onclick="loadData('locations')">GEO_PROFILE</button>
                 </div>
-
                 <div class="terminal-screen" id="terminal-content">
                     </div>
             </div>
         </div>
     </section>
 
-    <section id="victims" class="section-victims">
-        <div class="container">
-            <h2 style="color: #fff; margin-bottom: 40px; text-shadow: 0 0 10px #000;">Memorial of the Fallen</h2>
-            <div class="victim-gallery">
-                
-                <div class="victim-card">
-                    <span class="motif-icon">⚠</span>
-                    <h4>Linda Sutton</h4>
-                    <p class="mono">May 23, 1981</p>
-                    <p>The first confirmed kill. Abducted from Division Street. Found in a vacant lot near the Chicago River. Mutilated with wire-like tools. Her death was the spark of the fire.</p>
-                </div>
-
-                <div class="victim-card featured">
-                    <span class="motif-icon">🦋</span>
-                    <h4>Lorraine Borowski</h4>
-                    <p class="mono">May 15, 1982 | Elmhurst</p>
-                    <p>A 21-year-old secretary with a butterfly collection. Abducted on her way to work at Remax Realty. Her spilled coffee thermos was the only trace left behind. Her body was found months later in a field off Route 83.</p>
-                </div>
-
-                <div class="victim-card">
-                    <span class="motif-icon">🥢</span>
-                    <h4>Shui Mak</h4>
-                    <p class="mono">June 13, 1982</p>
-                    <p>Daughter of Chinatown. Vanished after closing her family's diner. Her warmth was extinguished by the crew's knife. Dumped in an alley near South Wentworth.</p>
-                </div>
-
-                <div class="victim-card featured">
-                    <span class="motif-icon">⭐</span>
-                    <h4>Rose Beck Davis</h4>
-                    <p class="mono">Sept 9, 1982 | Lincoln Park</p>
-                    <p>A rising star marketing executive. Abducted near her apartment. In a deviation from the wire, Gecht used a rusted ax found in the attic. Her murder brought the panic to the affluent North Side.</p>
-                </div>
-
-                <div class="victim-card">
-                    <span class="motif-icon">🔧</span>
-                    <h4>Rafael Tirado</h4>
-                    <p class="mono">Oct 6, 1982 | Drive-By</p>
-                    <p>An outlier crime. A "side hustle" hit for the Latin Kings. Gunned down outside a bodega. Proved the crew's violence was evolving into reckless chaos.</p>
-                </div>
-
-                <div class="victim-card" style="border-left-color: var(--terminal-green);">
-                    <span class="motif-icon">🔥</span>
-                    <h4>Beverly Washington</h4>
-                    <p class="mono">SURVIVOR | Oct 8, 1982</p>
-                    <p>The key. Abducted, mutilated, but spared by Thomas Kokoraleis. Found naked near railroad tracks. She provided the description of the van, the attic, and the "skinny prick" leader.</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
     <section id="detective" class="section-detective">
         <div class="container narrative-block">
-            <h2>The Hunter: Sarah Novak</h2>
+            <h2>The Detective's Burden</h2>
             <p>
-                Detective Sarah Novak is a woman forged by loss. Haunted by the 1972 unsolved murder of her sister Jenny, she views the Ripper case not just as a job, but as a crusade.
-                While the real CPD dismissed victims as "hookers" and "runaways," Novak connects the dots between the piano wire marks and the attic dust.
+                Detective Sarah Novak is the lens through which we view this horror. Driven by the unsolved 1972 murder of her sister Jenny, Novak's obsession with the "Red Van" broke the case when the system failed.
+                While the media focused on Satanic Panic, Novak focused on the dust in the wounds—asbestos that pointed directly to an attic on Natchez Avenue.
             </p>
-            
             <div class="quote-block">
-                "They aren't just killing. They are performing. The attic isn't a hideout; it's a stage. And Gecht is the director."
+                "We got 'em. But looking at the photos of Linda, Rose, and Shui... justice feels like a bandage on a bullet wound."
             </div>
-
             <p>
-                From the forensic breakthrough of identifying candle wax in the wounds to the high-stakes raid on Natchez Avenue, Novak's narrative arc bridges the gap between the cold facts of history and the emotional devastation of the victims' families. 
-                She is the lens through which we see the cracks in the crew—Thomas's guilt, Andrew's madness, and Gecht's absolute depravity.
+                [cite_start]Novak's work unified the disparate cases—the ax murder in Lincoln Park, the wire mutilations on the West Side, and the gangland-style shooting in Humboldt Park—proving they were all the work of one crew[cite: 2026].
             </p>
         </div>
     </section>
@@ -632,13 +628,11 @@
         <div class="container">
             <p>OFFICIAL COMPANION SITE FOR "CHICAGO RIPPER CREW: REBOOT"</p>
             <p class="mono">© 2025 Dr. Stephen Dietrich-Kolokouris | All Rights Reserved</p>
-            <br>
-            <p style="font-size: 0.8rem; color: #333;">Design: Elevated Noir / Forensic Archive</p>
         </div>
     </footer>
 
     <script>
-        // Terminal Clock
+        // CLOCK
         function updateClock() {
             const now = new Date();
             document.getElementById('clock').innerText = now.toLocaleTimeString('en-US', { hour12: false });
@@ -646,40 +640,40 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // Terminal Data Content
+        // DATASETS
         const dataSets = {
-            'autopsy': `
+            'weapons': `
 <div class="data-entry">
-    <span class="data-label">CASE ID:</span> 81-0523 (SUTTON)<br>
-    <span class="data-label">PATHOLOGY:</span> PERIMORTEM AMPUTATION (BILATERAL)<br>
-    <span class="data-label">TOOL MARK:</span> HIGH-TENSILE WIRE (PIANO/GARROTE)<br>
-    <span class="data-label">NOTES:</span> "Surgical precision absent. Cuts indicate struggle. Deep ligature marks. Traces of industrial lubricant."
+    <span class="data-label">ITEM A:</span> PIANO WIRE / GARROTE<br>
+    <span class="data-label">USED ON:</span> Sutton, Borowski, Mak, Delaware, Washington.<br>
+    <span class="data-label">NOTES:</span> Gecht's signature fetish tool. [cite_start]Used for perimortem amputation[cite: 193].
 </div>
 <div class="data-entry">
-    <span class="data-label">CASE ID:</span> 82-0909 (DAVIS)<br>
-    <span class="data-label">PATHOLOGY:</span> BLUNT FORCE TRAUMA / SEVERING<br>
-    <span class="data-label">TOOL MARK:</span> OXIDIZED FERROUS METAL (RUSTED AX)<br>
-    <span class="data-label">TRACE:</span> Candle wax found in wound bed. Attic dust (asbestos/insulation) on clothing.
+    <span class="data-label">ITEM B:</span> RUSTED AX<br>
+    <span class="data-label">USED ON:</span> Rose Beck Davis.<br>
+    <span class="data-label">NOTES:</span> Recovered from Natchez attic. [cite_start]Rust particles matched wound telemetry[cite: 1387].
+</div>
+<div class="data-entry">
+    <span class="data-label">ITEM C:</span> .38 REVOLVER<br>
+    <span class="data-label">USED ON:</span> Tirado (Fatal), Rosario (Injury).<br>
+    <span class="data-label">NOTES:</span> Stolen by Spreitzer. [cite_start]Used in the drive-by "side hustle"[cite: 1548].
+</div>
+            `,
+            'vehicle': `
+<div class="data-entry">
+    <span class="data-label">VEHICLE:</span> 1978 DODGE TRADESMAN VAN<br>
+    <span class="data-label">COLOR:</span> RED (PRIMER SPOTS)<br>
+    <span class="data-label">INTERIOR:</span> Stripped rear cabin. Carpet fibers matched to multiple victims.<br>
+    [cite_start]<span class="data-label">STATUS:</span> Impounded Oct 1982[cite: 1988].
 </div>
             `,
             'locations': `
 <div class="data-entry">
-    <span class="data-label">TARGET:</span> 2720 NORTH NATCHEZ AVE.<br>
-    <span class="data-label">TYPE:</span> RESIDENTIAL WALK-UP (ATTIC)<br>
-    <span class="data-label">SURVEILLANCE:</span> Neighbors report chanting, screaming, loud music late at night.<br>
-    <span class="data-label">FORENSIC:</span> Mattress heavily stained. Pentagrams etched into rafters. Crate containing trophies found.
+    <span class="data-label">THE CHAPEL:</span> 2720 N. Natchez Ave (Attic).<br>
+    [cite_start]<span class="data-label">EVIDENCE:</span> Blood-soaked mattress, pentagrams on rafters, flesh trophies in crate[cite: 1968].
 </div>
 <div class="data-entry">
-    <span class="data-label">MOBILE UNIT:</span> 1978 DODGE VAN (RED)<br>
-    <span class="data-label">PLATE FRAGMENT:</span> ILLINOIS '7...'<br>
-    <span class="data-label">INTEL:</span> Interior stripped. Carpet fibers match victim clothing.
-</div>
-            `,
-            'survivor': `
-<div class="data-entry">
-    <span class="data-label">WITNESS:</span> B. WASHINGTON<br>
-    <span class="data-label">STATEMENT:</span> "Four men. Red van. They took me to an attic. Smelled like old wax and rot. The skinny one (Gecht) was in charge. The quiet one (Thomas) cut me loose."<br>
-    <span class="data-label">ID CONFIRMATION:</span> Positive ID on Robin Gecht via photo lineup. Mentioned 'Cross Necklace' on one attacker.
+    <span class="data-label">DROP SITES:</span> Chicago River, Route 83 (Elmhurst), Roosevelt Rd Alley.
 </div>
             `
         };
@@ -687,38 +681,13 @@
         function loadData(type) {
             const screen = document.getElementById('terminal-content');
             const tabs = document.querySelectorAll('.tab-btn');
-            
-            // UI Toggle
             tabs.forEach(t => t.classList.remove('active'));
             event.target.classList.add('active');
-
-            // Load Content with pseudo-typing effect
-            screen.innerHTML = '<span class="mono">ACCESSING RECORDS...</span>';
-            setTimeout(() => {
-                screen.innerHTML = dataSets[type];
-            }, 300);
+            screen.innerHTML = '<span class="mono">DECRYPTING...</span>';
+            setTimeout(() => { screen.innerHTML = dataSets[type]; }, 300);
         }
 
-        // Initialize Terminal
-        loadData('autopsy');
-
-        // Scroll Animation Observer
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.victim-card, .dossier-file, .premise-card').forEach(el => {
-            el.style.opacity = 0;
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-            observer.observe(el);
-        });
-
+        loadData('weapons');
     </script>
 </body>
 </html>
