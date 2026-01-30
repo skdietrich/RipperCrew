@@ -145,17 +145,16 @@
         .hero-bg {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #1a0000 0%, #0a0a0a 50%, #000000 100%);
+            background: #000;
             z-index: 0;
         }
         
-        .hero-img {
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            object-position: center;
-            opacity: 0.4; 
-            transform: scale(1.05); 
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+            transform: scale(1.05);
             transition: transform 10s ease;
         }
 
@@ -701,7 +700,8 @@
 
     <header>
         <div class="hero-bg">
-            </div>
+            <img src="cover.jpg" alt="Case File Cover">
+        </div>
         <div class="hero-overlay"></div>
         <div class="container hero-content">
             <div class="author-tag text-mono text-muted" style="margin-bottom: 20px;">Dr. Stephen Dietrich-Kolokouris Presents</div>
@@ -727,6 +727,7 @@
                 <li><a href="#overview">Case Overview</a></li>
                 <li><a href="#timeline">Timeline</a></li>
                 <li><a href="#suspects">Suspects</a></li>
+                <li><a href="#media-archive">Evidence Tapes</a></li>
                 <li><a href="#victims">The Fallen</a></li>
                 <li><a href="#terminal">Forensics</a></li>
             </ul>
@@ -871,7 +872,7 @@
                 
                 <div class="suspect-card">
                     <div class="mugshot-zone">
-                        <div class="mugshot-placeholder">[IMG_GECHT.RAW]<br>EVIDENCE PHOTO</div>
+                        <img src="gecht.jpg" class="mugshot-img" alt="Robin Gecht">
                     </div>
                     <div class="suspect-info">
                         <div class="suspect-name">Robin Gecht</div>
@@ -887,7 +888,7 @@
 
                 <div class="suspect-card">
                     <div class="mugshot-zone">
-                        <div class="mugshot-placeholder">[IMG_SPREITZER.RAW]<br>EVIDENCE PHOTO</div>
+                        <img src="spreitzer.jpg" class="mugshot-img" alt="Edward Spreitzer">
                     </div>
                     <div class="suspect-info">
                         <div class="suspect-name">Edward Spreitzer</div>
@@ -903,7 +904,7 @@
 
                 <div class="suspect-card">
                     <div class="mugshot-zone">
-                        <div class="mugshot-placeholder">[IMG_KOKO_A.RAW]<br>EVIDENCE PHOTO</div>
+                        <img src="andrew.jpg" class="mugshot-img" alt="Andrew Kokoraleis">
                     </div>
                     <div class="suspect-info">
                         <div class="suspect-name">Andrew Kokoraleis</div>
@@ -919,7 +920,7 @@
 
                 <div class="suspect-card">
                     <div class="mugshot-zone">
-                        <div class="mugshot-placeholder">[IMG_KOKO_T.RAW]<br>EVIDENCE PHOTO</div>
+                        <img src="thomas.jpg" class="mugshot-img" alt="Thomas Kokoraleis">
                     </div>
                     <div class="suspect-info">
                         <div class="suspect-name">Thomas Kokoraleis</div>
@@ -931,6 +932,34 @@
                             Sentence: Life (Paroled 2019)
                         </p>
                     </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="media-archive" class="section-padding" style="background: #0d0d0d; border-top: 1px solid #222;">
+        <div class="container">
+            <h2 style="margin-bottom: 40px; text-align: center;">Media Archive</h2>
+            
+            <div class="grid-2">
+                
+                <div class="premise-card" style="padding: 20px;">
+                    <video width="100%" controls style="border: 1px solid #333; margin-bottom: 15px;">
+                        <source src="evidence_01.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <h4 class="text-highlight" style="font-size: 1rem; margin-bottom: 5px;">ARCHIVE TAPE #01</h4>
+                    <p class="text-mono text-muted" style="font-size: 0.8rem;">News broadcast regarding the arrest of Robin Gecht (1982).</p>
+                </div>
+
+                <div class="premise-card" style="padding: 20px;">
+                    <video width="100%" controls style="border: 1px solid #333; margin-bottom: 15px;">
+                        <source src="evidence_02.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <h4 class="text-highlight" style="font-size: 1rem; margin-bottom: 5px;">ARCHIVE TAPE #02</h4>
+                    <p class="text-mono text-muted" style="font-size: 0.8rem;">Site walkthrough of the Natchez Avenue attic.</p>
                 </div>
 
             </div>
