@@ -694,6 +694,46 @@
                 text-align: center; 
             }
         }
+
+        /* ============================================================
+           PROMO MODAL  ← INSERTION #1 (end of <style> block)
+           ============================================================ */
+        #promo-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        #promo-overlay video {
+            max-width: 90vw;
+            max-height: 75vh;
+            border: 2px solid #aa0000;
+            box-shadow: 0 0 50px rgba(170, 0, 0, 0.5);
+        }
+
+        #promo-close {
+            background: transparent;
+            border: 1px solid #aa0000;
+            color: #ccc;
+            padding: 0.5rem 2rem;
+            font-family: 'Share Tech Mono', monospace;
+            letter-spacing: 0.2em;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+        }
+
+        #promo-close:hover {
+            background: #aa0000;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -1172,6 +1212,17 @@
         </div>
     </footer>
 
+    <!-- ============================================================
+         PROMO MODAL  ← INSERTION #2 (just before </body>)
+         Change promo.mp4 to your actual filename once uploaded.
+         ============================================================ -->
+    <div id="promo-overlay" style="display:none;">
+        <video id="promo-video" autoplay muted loop playsinline>
+            <source src="promo4.mp4" type="video/mp4">
+        </video>
+        <button id="promo-close">✕ &nbsp; CLOSE FILE</button>
+    </div>
+
     <script>
         // Forensic Terminal Data
         const forensicData = {
@@ -1266,6 +1317,26 @@
             setTimeout(() => {
                 document.body.classList.add('loaded');
             }, 100);
+
+            // ── PROMO MODAL LOGIC ──────────────────────────────────────
+            if (!sessionStorage.getItem('promoSeen')) {
+                const overlay = document.getElementById('promo-overlay');
+                const video   = document.getElementById('promo-video');
+                const btn     = document.getElementById('promo-close');
+
+                overlay.style.display = 'flex';
+
+                btn.addEventListener('click', function () {
+                    video.pause();
+                    overlay.style.display = 'none';
+                    sessionStorage.setItem('promoSeen', '1');
+                });
+
+                overlay.addEventListener('click', function (e) {
+                    if (e.target === overlay) btn.click();
+                });
+            }
+            // ── END PROMO MODAL LOGIC ──────────────────────────────────
         });
 
         // Clock Update
