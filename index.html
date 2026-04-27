@@ -734,6 +734,113 @@
             background: #aa0000;
             color: #fff;
         }
+
+        /* ═══════════════════════════════════════════════════════════════
+           HAMBURGER NAV — hidden on desktop, active ≤860px
+           ═══════════════════════════════════════════════════════════════ */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 26px; height: 18px;
+            background: none; border: none; cursor: pointer; padding: 0;
+            flex-shrink: 0;
+        }
+        .nav-hamburger span {
+            display: block; width: 100%; height: 2px;
+            background: var(--text-main); border-radius: 2px;
+            transition: transform .25s ease, opacity .25s ease;
+        }
+        .nav-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+        .nav-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+        /* ═══════════════════════════════════════════════════════════════
+           MOBILE RESPONSIVE — 480px and 380px breakpoints
+           ═══════════════════════════════════════════════════════════════ */
+        @media (max-width: 860px) {
+            /* Hamburger replaces inline nav links */
+            .nav-hamburger { display: flex; }
+            .nav-links {
+                display: none;
+                position: fixed; top: 0; left: 0; right: 0;
+                flex-direction: column;
+                background: rgba(5,5,5,.97);
+                border-bottom: 1px solid var(--border-color);
+                padding-top: 70px; padding-bottom: 20px;
+                gap: 0; z-index: 58; list-style: none;
+            }
+            .nav-links.open { display: flex; }
+            .nav-links li { border-bottom: 1px solid #1a1a1a; }
+            .nav-links a { display: block; padding: 13px 20px; font-size: 1rem; }
+            .nav-inner { height: auto; min-height: 56px; padding: 12px 0; align-items: center; }
+        }
+
+        @media (max-width: 480px) {
+            /* Section padding: 100px → 52px */
+            .section-padding { padding: 52px 0; }
+
+            /* Hero */
+            .hero-title { font-size: clamp(2.6rem, 11vw, 3.5rem); }
+            .hero-sub { font-size: 0.82rem; letter-spacing: 0.07em; padding: 10px 0; }
+            .hero-content { margin-top: 20px; padding: 0 4px; }
+            .hero-buttons { flex-direction: column; align-items: stretch; gap: 12px; }
+            .hero-btn { width: 100%; max-width: none; text-align: center; padding: 14px 20px; min-height: 48px; }
+
+            /* Grids: already 1fr at 900px, reduce gap */
+            .grid-2, .grid-3, .grid-4 { gap: 1.2rem; }
+
+            /* Suspect cards */
+            .suspect-card { padding: 0; }
+            .suspect-info { padding: 14px; }
+            .suspect-name { font-size: 1.05rem; }
+
+            /* Timeline */
+            .timeline-line { left: 12px; }
+            .timeline-date { padding-left: 32px; font-size: 1rem; }
+            .timeline-content { margin-left: 32px; font-size: 0.88rem; }
+            .timeline-content::after { left: -38px; }
+
+            /* Victim cards */
+            .victim-name { font-size: 1rem; }
+            .victim-detail { font-size: 0.82rem; }
+
+            /* Terminal */
+            .terminal-wrapper { padding: 16px; }
+            .terminal-content { font-size: 0.78rem; line-height: 1.6; }
+
+            /* Section detective / callout */
+            .section-detective { padding: 32px 16px; }
+
+            /* Author section */
+            .author-bio { font-size: 0.88rem; }
+
+            /* Container side padding */
+            .container { padding: 0 14px; }
+
+            /* Book / buy CTA buttons — full width stack */
+            .cta-buttons, .book-cta { flex-direction: column; gap: 10px; }
+            .btn, .book-btn { width: 100%; text-align: center; min-height: 48px; }
+
+            /* Nav logo: prevent wrap */
+            .nav-logo { font-size: 1rem; white-space: nowrap; }
+
+            /* Footer */
+            footer { padding: 32px 0 48px; font-size: 0.82rem; }
+
+            /* Promo modal video */
+            #promo-overlay video { max-width: 96vw; max-height: 70vh; }
+        }
+
+        @media (max-width: 380px) {
+            .hero-title { font-size: clamp(2.1rem, 10vw, 2.8rem); }
+            .hero-sub { font-size: 0.76rem; }
+            .container { padding: 0 10px; }
+            .terminal-content { font-size: 0.72rem; }
+            /* Timeline: tighten further */
+            .timeline-date { padding-left: 24px; font-size: 0.9rem; }
+            .timeline-content { margin-left: 24px; }
+        }
     </style>
 </head>
 <body>
@@ -763,7 +870,10 @@
     <nav>
         <div class="container nav-inner">
             <div class="nav-logo">CRC: REBOOT</div>
-            <ul class="nav-links">
+            <button class="nav-hamburger" id="navToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#overview">Case Overview</a></li>
                 <li><a href="#timeline">Timeline</a></li>
                 <li><a href="#suspects">Suspects</a></li>
@@ -1375,6 +1485,22 @@
             history.scrollRestoration = 'manual';
         }
         window.scrollTo(0, 0);
+
+        // ── Hamburger nav toggle ──────────────────────────────────────
+        const navToggle = document.getElementById('navToggle');
+        const navLinks  = document.getElementById('navLinks');
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', () => {
+                const open = navLinks.classList.toggle('open');
+                navToggle.classList.toggle('open', open);
+            });
+            navLinks.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => {
+                    navLinks.classList.remove('open');
+                    navToggle.classList.remove('open');
+                });
+            });
+        }
     </script>
 </body>
 </html>
