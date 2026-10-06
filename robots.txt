@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://skdietrich.github.io/RipperCrew/sitemap.xml
+Sitemap: https://chicagorippercrew.xyz/sitemap.xml
